@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:toro_app/const/colors.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -6,9 +7,22 @@ import 'package:url_launcher/url_launcher.dart';
 class SocialMediaScreen extends StatelessWidget {
   const SocialMediaScreen({super.key});
 
+  final String noText = '0575 - 511 213';
+  final String addressText = 'Groenmarkt 37 7201 HW Zutphen';
+  copyText(BuildContext context, String text) {
+    Clipboard.setData(ClipboardData(text: text)).then((_) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Copied: $text'),
+          duration: Duration(seconds: 2),
+        ),
+      );
+    });
+  }
+
   Future<void> _launchURL(String url) async {
     final Uri uri = Uri.parse(url);
-     if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
+    if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
       throw Exception('Could not launch $url');
     }
   }
@@ -18,13 +32,17 @@ class SocialMediaScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: AppColors.mainAppColor,
-         appBar: AppBar(
+        appBar: AppBar(
           backgroundColor: AppColors.mainAppColor,
           elevation: 0,
           leading: Padding(
             padding: const EdgeInsets.all(8.0),
             child: IconButton(
-              icon: const Icon(Icons.arrow_back, color: AppColors.secondAppColor,size: 35,),
+              icon: const Icon(
+                Icons.arrow_back,
+                color: AppColors.secondAppColor,
+                size: 35,
+              ),
               onPressed: () {
                 Navigator.pop(context); // Goes back to the last screen
               },
@@ -33,7 +51,11 @@ class SocialMediaScreen extends StatelessWidget {
         ),
         body: Column(
           children: [
-            Image.asset('assets/images/logo.png'),
+            SizedBox(
+              height: 300,
+              width: 300,
+              child: Image.asset('assets/images/logo.png'),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -42,7 +64,9 @@ class SocialMediaScreen extends StatelessWidget {
                   children: [
                     InkWell(
                       onTap: () {
-                         _launchURL('https://www.facebook.com/restauranttorozutphen/');
+                        _launchURL(
+                          'https://www.facebook.com/restauranttorozutphen/',
+                        );
                       },
                       borderRadius: BorderRadius.circular(
                         8,
@@ -109,6 +133,121 @@ class SocialMediaScreen extends StatelessWidget {
                 ),
               ],
             ),
+            SizedBox(width: 300, child: Divider(color: AppColors.secondAppColor, thickness: 1)),
+            //? copy address
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Address',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 24,
+                      color: AppColors.secondAppColor,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                    
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 8,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.orange,
+                      border: Border.all(color: Colors.black, width: 1.5),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Row(
+                     // mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            addressText,
+                            style: const TextStyle(color: AppColors.mainAppColor, fontSize: 18, fontWeight: FontWeight.w600),
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                    
+                        IconButton(
+                          icon: const Icon(Icons.copy, color: Colors.black),
+                          onPressed: () => copyText(context, addressText),
+                          tooltip: 'Copy Address',
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            //? copy number
+           Padding(
+             padding: const EdgeInsets.only(left: 8,right: 170, top: 8, ),
+             child: Column(
+                 crossAxisAlignment: CrossAxisAlignment.start,
+                // mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Number',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 24,
+                      color: AppColors.secondAppColor,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                   
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 8,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.orange,
+                      border: Border.all(color: Colors.black, width: 1.5),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Row(
+                     // mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            noText,
+                            style: const TextStyle(color: AppColors.mainAppColor, fontSize: 18, fontWeight: FontWeight.w600),
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                   
+                        IconButton(
+                          icon: const Icon(Icons.copy, color: Colors.black),
+                          onPressed: () => copyText(context, noText),
+                          tooltip: 'Copy Number',
+                        ),
+                        
+                      ],
+                    ),
+                  ),
+                  
+                ],
+              ),
+           ),
+      
+            // Row(
+            //   children: [
+            //     Text('0575 - 511 213'),
+            //     IconButton(
+            //       icon: const Icon(Icons.copy),
+            //       onPressed: () => copyText(context, noText),
+            //       tooltip: 'Copy',
+            //     ),
+            //   ],
+            // ),
           ],
         ),
       ),
