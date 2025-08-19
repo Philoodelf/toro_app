@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -60,39 +62,42 @@ class SocialMediaScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 //?facebook
-                Column(
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        _launchURL(
-                          'https://www.facebook.com/restauranttorozutphen/',
-                        );
-                      },
-                      borderRadius: BorderRadius.circular(
-                        8,
-                      ), // for rounded ripple
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Icon(
-                            Icons.facebook,
-                            color: Color(0xff1877F2),
-                            size: 75,
-                          ),
-                          Text(
-                            'Facebook',
-                            style: TextStyle(
-                              color: Colors.blue,
-                              fontSize: 25,
-                              fontWeight: FontWeight.w600,
+                Padding(
+                  padding: const EdgeInsets.only(left: 15),
+                  child: Column(
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          _launchURL(
+                            'https://www.facebook.com/restauranttorozutphen/',
+                          );
+                        },
+                        borderRadius: BorderRadius.circular(
+                          8,
+                        ), // for rounded ripple
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(
+                              Icons.facebook,
+                              color: Color(0xff1877F2),
+                              size: 50,
                             ),
-                          ),
-                        ],
+                            Text(
+                              'Facebook',
+                              style: TextStyle(
+                                color: Colors.blue,
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-                SizedBox(width: 25),
+                SizedBox(width: 35),
                 //?instagram
                 Column(
                   children: [
@@ -117,11 +122,11 @@ class SocialMediaScreen extends StatelessWidget {
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            FaIcon(FontAwesomeIcons.instagram, size: 75),
+                            FaIcon(FontAwesomeIcons.instagram, size: 50),
                             Text(
                               'Instagram',
                               style: const TextStyle(
-                                fontSize: 25,
+                                fontSize: 15,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
@@ -131,6 +136,39 @@ class SocialMediaScreen extends StatelessWidget {
                     ),
                   ],
                 ),
+                SizedBox(width: 25,),
+                 Column(
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        _launchURL(
+                          'https://restaurant-toro.nl/',
+                        );
+                      },
+                      borderRadius: BorderRadius.circular(
+                        8,
+                      ), // for rounded ripple
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 4),
+                          child: SizedBox(height: 50,width: 150, child: Image.asset('assets/images/logo_toro.png',)),
+                        ),
+                          Text(
+                            'Checkout our Page ',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+
               ],
             ),
             SizedBox(width: 300, child: Divider(color: AppColors.secondAppColor, thickness: 1)),

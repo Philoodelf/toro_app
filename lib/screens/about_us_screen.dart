@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:toro_app/const/colors.dart';
 
-class PartyScreen extends StatefulWidget {
-  const PartyScreen({super.key});
+class AboutUsScreen extends StatefulWidget {
+  const AboutUsScreen({super.key});
 
   @override
-  State<PartyScreen> createState() => _PartyScreenState();
+  State<AboutUsScreen> createState() => _AboutUsScreenState();
 }
 
-class _PartyScreenState extends State<PartyScreen> {
+class _AboutUsScreenState extends State<AboutUsScreen> {
   bool showText = false;
   bool visible = false;
   bool appear = false;
-  bool div=false;
+  bool div = false;
   bool animationsFinished = false;
 
   @override
@@ -26,23 +26,10 @@ class _PartyScreenState extends State<PartyScreen> {
 
     Future.delayed(Duration(seconds: 3), () {
       setState(() {
-        visible = true;
-      });
-    });
-
-    Future.delayed(Duration(seconds: 7), () {
-      setState(() {
-        div = true;
-      });
-    });
-
-    Future.delayed(Duration(seconds: 9), () {
-      setState(() {
         appear = true;
-        animationsFinished = true;
+        animationsFinished=true;
       });
     });
-
   }
 
   @override
@@ -63,7 +50,7 @@ class _PartyScreenState extends State<PartyScreen> {
               ),
               onPressed: () {
                 if (animationsFinished) {
-                  Navigator.pop(context); 
+                  Navigator.pop(context);
                 }
               },
             ),
@@ -78,15 +65,21 @@ class _PartyScreenState extends State<PartyScreen> {
                   padding: const EdgeInsets.all(12),
                   child: Stack(
                     children: [
-                      Image.asset('assets/images/party.jpg', fit: BoxFit.cover),
+                      SizedBox(
+                        height: 260,
+                        child: Image.asset(
+                          'assets/images/about_us.jpg',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
                       AnimatedPositioned(
                         duration: Duration(seconds: 3),
                         curve: Curves.bounceIn,
                         left: 10,
                         right: 20,
-                        bottom: showText ? 160 : -70,
+                        bottom: showText ? 180 : -60,
                         child: Text(
-                          'Celebrate your party in Argentine style',
+                          'Experience the Mediterranean atmosphere',
                           textAlign: TextAlign.start,
                           style: const TextStyle(
                             color: Colors.white,
@@ -105,43 +98,10 @@ class _PartyScreenState extends State<PartyScreen> {
                     ],
                   ),
                 ),
-          
+
                 Column(
                   // crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    AnimatedSlide(
-                      offset:
-                          visible
-                              ? Offset.zero
-                              : const Offset(-1.5, 0), // start from left
-                      duration: const Duration(seconds: 4),
-                      curve: Curves.easeOut,
-                      child: AnimatedOpacity(
-                        duration: const Duration(seconds: 2),
-                        opacity: visible ? 1.0 : 0.0,
-                        child: const Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text(
-                            'Planning a party, family day, or business meeting but unsure of a suitable venue? Our restaurant offers the perfect setting with its authentic Mediterranean atmosphere.',
-                            textAlign: TextAlign.start,
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    AnimatedContainer(
-                      duration: const Duration(seconds: 2),
-                      curve: Curves.easeOut,
-                      width: div ? 300 : 0, // animate width
-                      child: Divider(
-                        color: AppColors.secondAppColor,
-                        thickness: 1,
-                      ),
-                    ),
                     AnimatedOpacity(
                       opacity: appear ? 1 : 0,
                       duration: const Duration(seconds: 1),
@@ -156,7 +116,7 @@ class _PartyScreenState extends State<PartyScreen> {
                             Padding(
                               padding: EdgeInsets.all(8.0),
                               child: Text(
-                                'Party',
+                                'Our story',
                                 style: TextStyle(
                                   fontSize: 30,
                                   fontWeight: FontWeight.w700,
@@ -167,7 +127,7 @@ class _PartyScreenState extends State<PartyScreen> {
                             Padding(
                               padding: EdgeInsets.all(8.0),
                               child: Text(
-                                "Our restaurant features two separate rooms available for rent for a delicious lunch or a full dinner. For groups of eight or more, we can offer a diverse and colorful selection, entirely in Toro style, to suit your needs.",
+                                "Located in the heart of Zutphen's vibrant city center, Restaurant Toro is a truly authentic Spanish-Argentine restaurant. With a view of the Wijnhuistoren (Wine House Tower), you'll feel like you're immersed in a Mediterranean atmosphere. Thanks to our friendly service and expert culinary skills, we've been awarded second place for the most fun and welcoming restaurant in Zutphen.",
                                 style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.w600,
@@ -179,7 +139,7 @@ class _PartyScreenState extends State<PartyScreen> {
                             Padding(
                               padding: EdgeInsets.all(8.0),
                               child: Text(
-                                "Our dishes can be paired with delicious Spanish and Argentinian wines, and combined with our Mediterranean atmosphere, it's sure to be a success. Curious about the possibilities? Feel free to contact us or simply drop by and experience the atmosphere.",
+                                "Our sunny terrace with plenty of shade also offers a wonderful spot for lunch, dinner or a nice drink in the summer months.",
                                 style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.w600,

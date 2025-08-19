@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:toro_app/const/colors.dart';
 
-class PartyScreen extends StatefulWidget {
-  const PartyScreen({super.key});
+class ContactScreen extends StatefulWidget {
+  const ContactScreen({super.key});
 
   @override
-  State<PartyScreen> createState() => _PartyScreenState();
+  State<ContactScreen> createState() => _ContactScreenState();
 }
 
-class _PartyScreenState extends State<PartyScreen> {
+class _ContactScreenState extends State<ContactScreen> {
   bool showText = false;
   bool visible = false;
   bool appear = false;
-  bool div=false;
+  bool div = false;
   bool animationsFinished = false;
 
   @override
@@ -42,7 +42,6 @@ class _PartyScreenState extends State<PartyScreen> {
         animationsFinished = true;
       });
     });
-
   }
 
   @override
@@ -63,7 +62,7 @@ class _PartyScreenState extends State<PartyScreen> {
               ),
               onPressed: () {
                 if (animationsFinished) {
-                  Navigator.pop(context); 
+                  Navigator.pop(context);
                 }
               },
             ),
@@ -86,7 +85,7 @@ class _PartyScreenState extends State<PartyScreen> {
                         right: 20,
                         bottom: showText ? 160 : -70,
                         child: Text(
-                          'Celebrate your party in Argentine style',
+                          'Will we see you\n soon?',
                           textAlign: TextAlign.start,
                           style: const TextStyle(
                             color: Colors.white,
@@ -105,7 +104,7 @@ class _PartyScreenState extends State<PartyScreen> {
                     ],
                   ),
                 ),
-          
+
                 Column(
                   // crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -122,7 +121,7 @@ class _PartyScreenState extends State<PartyScreen> {
                         child: const Padding(
                           padding: EdgeInsets.all(8.0),
                           child: Text(
-                            'Planning a party, family day, or business meeting but unsure of a suitable venue? Our restaurant offers the perfect setting with its authentic Mediterranean atmosphere.',
+                            'Curious or want more information? Our contact details are below. If you have any questions, please let us know and we\'ll answer them as quickly as possible.',
                             textAlign: TextAlign.start,
                             style: TextStyle(
                               fontSize: 20,
@@ -156,7 +155,7 @@ class _PartyScreenState extends State<PartyScreen> {
                             Padding(
                               padding: EdgeInsets.all(8.0),
                               child: Text(
-                                'Party',
+                                'Contact',
                                 style: TextStyle(
                                   fontSize: 30,
                                   fontWeight: FontWeight.w700,
@@ -167,7 +166,7 @@ class _PartyScreenState extends State<PartyScreen> {
                             Padding(
                               padding: EdgeInsets.all(8.0),
                               child: Text(
-                                "Our restaurant features two separate rooms available for rent for a delicious lunch or a full dinner. For groups of eight or more, we can offer a diverse and colorful selection, entirely in Toro style, to suit your needs.",
+                                "Our restaurant is located on the edge of Zutphen's market square. We're easily accessible, and there's ample parking around the restaurant. Are you coming by public transport? We're within walking distance of the bus and train stations.",
                                 style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.w600,

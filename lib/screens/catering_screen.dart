@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:toro_app/const/colors.dart';
 
-class PartyScreen extends StatefulWidget {
-  const PartyScreen({super.key});
+class CateringScreen extends StatefulWidget {
+  const CateringScreen({super.key});
 
   @override
-  State<PartyScreen> createState() => _PartyScreenState();
+  State<CateringScreen> createState() => _CateringScreenState();
 }
 
-class _PartyScreenState extends State<PartyScreen> {
+class _CateringScreenState extends State<CateringScreen> {
   bool showText = false;
   bool visible = false;
   bool appear = false;
-  bool div=false;
+  bool div = false;
   bool animationsFinished = false;
 
   @override
@@ -39,10 +39,9 @@ class _PartyScreenState extends State<PartyScreen> {
     Future.delayed(Duration(seconds: 9), () {
       setState(() {
         appear = true;
-        animationsFinished = true;
+        animationsFinished=true;
       });
     });
-
   }
 
   @override
@@ -78,7 +77,10 @@ class _PartyScreenState extends State<PartyScreen> {
                   padding: const EdgeInsets.all(12),
                   child: Stack(
                     children: [
-                      Image.asset('assets/images/party.jpg', fit: BoxFit.cover),
+                      Image.asset(
+                        'assets/images/catering.jpg',
+                        fit: BoxFit.cover,
+                      ),
                       AnimatedPositioned(
                         duration: Duration(seconds: 3),
                         curve: Curves.bounceIn,
@@ -86,7 +88,7 @@ class _PartyScreenState extends State<PartyScreen> {
                         right: 20,
                         bottom: showText ? 160 : -70,
                         child: Text(
-                          'Celebrate your party in Argentine style',
+                          'Surprise your visitors with our kitchen',
                           textAlign: TextAlign.start,
                           style: const TextStyle(
                             color: Colors.white,
@@ -105,7 +107,7 @@ class _PartyScreenState extends State<PartyScreen> {
                     ],
                   ),
                 ),
-          
+
                 Column(
                   // crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -122,7 +124,7 @@ class _PartyScreenState extends State<PartyScreen> {
                         child: const Padding(
                           padding: EdgeInsets.all(8.0),
                           child: Text(
-                            'Planning a party, family day, or business meeting but unsure of a suitable venue? Our restaurant offers the perfect setting with its authentic Mediterranean atmosphere.',
+                            'Spanish-Argentine restaurant Toro is also the perfect place for catering. Whether you have a group of 10 or a large party of 1000, we can arrange it for you.',
                             textAlign: TextAlign.start,
                             style: TextStyle(
                               fontSize: 20,
@@ -156,7 +158,7 @@ class _PartyScreenState extends State<PartyScreen> {
                             Padding(
                               padding: EdgeInsets.all(8.0),
                               child: Text(
-                                'Party',
+                                'Catering',
                                 style: TextStyle(
                                   fontSize: 30,
                                   fontWeight: FontWeight.w700,
@@ -167,7 +169,7 @@ class _PartyScreenState extends State<PartyScreen> {
                             Padding(
                               padding: EdgeInsets.all(8.0),
                               child: Text(
-                                "Our restaurant features two separate rooms available for rent for a delicious lunch or a full dinner. For groups of eight or more, we can offer a diverse and colorful selection, entirely in Toro style, to suit your needs.",
+                                "Are you planning a party or gathering? And is catering just the thing you're struggling with? We can take care of it for you. Together, we'll create the menu and discuss your preferences. We offer a wide range of options, including vegetarian, fully organic, and slow-cooked options. Even if you have a specific theme in mind, we'll tailor the dishes to your needs.",
                                 style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.w600,
@@ -179,7 +181,7 @@ class _PartyScreenState extends State<PartyScreen> {
                             Padding(
                               padding: EdgeInsets.all(8.0),
                               child: Text(
-                                "Our dishes can be paired with delicious Spanish and Argentinian wines, and combined with our Mediterranean atmosphere, it's sure to be a success. Curious about the possibilities? Feel free to contact us or simply drop by and experience the atmosphere.",
+                                "Our chefs will create the appropriate dishes for every occasion and in combination with the wines from our menu the experience will be complete.",
                                 style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.w600,

@@ -4,6 +4,7 @@ import 'package:toro_app/screens/splash_screen.dart';
 
 
 void main() {
+  
   runApp(const MyApp());
 }
 

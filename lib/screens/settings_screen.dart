@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:toro_app/const/colors.dart';
+import 'package:toro_app/screens/about_us_screen.dart';
+import 'package:toro_app/screens/catering_screen.dart';
+import 'package:toro_app/screens/contact_screen.dart';
 import 'package:toro_app/screens/party_screen.dart';
 import 'package:toro_app/widgets/costumemenu.dart';
 
@@ -33,9 +36,36 @@ class SettingsScreen extends StatelessWidget {
                             );
                           },
                         ),
-                        CostumeMenu(label: 'Catering', onTap: () {}),
-                        CostumeMenu(label: 'Contact', onTap: () {}),
-                        CostumeMenu(label: 'About us', onTap: () {}),
+                        CostumeMenu(
+                          label: 'Catering',
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => CateringScreen(),
+                              ),
+                            );
+                          },
+                        ),
+                        CostumeMenu(
+                          label: 'Contact',
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => ContactScreen(),
+                              ),
+                            );
+                          },
+                        ),
+                        CostumeMenu(
+                          label: 'About us',
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => AboutUsScreen(),
+                              ),
+                            );
+                          },
+                        ),
                         CostumeMenu(label: 'Translation', onTap: () {}),
                       ],
                     ),
