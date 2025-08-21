@@ -14,7 +14,7 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: AppColors.mainAppColor,
         body: Column(
           children: [
-            Image.asset('assets/images/logo.png'),
+            Image.asset('assets/images/logo_app.png'),
             Container(
               child: Column(
                 spacing: 12,

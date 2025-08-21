@@ -23,7 +23,7 @@ class _ButtonNavState extends State<ButtonNav> {
       backgroundColor: AppColors.mainAppColor,
       body: _screens[_selectedIndex],
       bottomNavigationBar: CurvedNavigationBar(
-        color: AppColors.secondAppColor,
+        color: Color.fromARGB(255, 234, 145, 20),
         backgroundColor: Colors.transparent,
         index: _selectedIndex,
         items: const [

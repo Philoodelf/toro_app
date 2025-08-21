@@ -50,7 +50,7 @@ class _SplashScreenState extends State<SplashScreen> {
             scale: _scale,
             duration: const Duration(milliseconds: 500),
             curve: Curves.easeOut,
-            child: Image.asset('assets/images/logo.png'),
+            child: Image.asset('assets/images/logo_app.png'),
           ),
         ),
       ),
