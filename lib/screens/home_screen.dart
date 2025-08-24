@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:toro_app/const/colors.dart';
 import 'package:toro_app/screens/socialmedia_screen.dart';
@@ -14,23 +15,23 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: AppColors.mainAppColor,
         body: Column(
           children: [
-            Image.asset('assets/images/logo_app.png'),
+            Image.asset(AppColors.logo),
             Container(
               child: Column(
                 spacing: 12,
                 children: [
                   CostumeMenu(
-                    label: 'Menu',
+                    label: 'menu'.tr(),
                     icon: Icons.menu_book_rounded,
                     onTap: () {},
                   ),
                   CostumeMenu(
-                    label: 'Reservation',
+                    label: 'reservation'.tr(),
                     icon: Icons.calendar_today_outlined,
                     onTap: () {},
                   ),
                   CostumeMenu(
-                    label: 'Social Media',
+                    label: 'socialmedia'.tr(),
                     icon: Icons.numbers,
                     onTap: () {
                       Navigator.of(context).push(

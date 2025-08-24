@@ -1,9 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:toro_app/const/colors.dart';
 import 'package:toro_app/screens/about_us_screen.dart';
 import 'package:toro_app/screens/catering_screen.dart';
 import 'package:toro_app/screens/contact_screen.dart';
 import 'package:toro_app/screens/party_screen.dart';
+import 'package:toro_app/screens/translation_screen.dart';
 import 'package:toro_app/widgets/costumemenu.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -17,7 +19,7 @@ class SettingsScreen extends StatelessWidget {
 
         body: Column(
           children: [
-            Image.asset('assets/images/logo.png'),
+            Image.asset(AppColors.logo),
             Container(
               child: Center(
                 child: SizedBox(
@@ -27,7 +29,7 @@ class SettingsScreen extends StatelessWidget {
                       spacing: 12,
                       children: [
                         CostumeMenu(
-                          label: 'Party',
+                          label: 'party'.tr(),
                           onTap: () {
                             Navigator.of(context).push(
                               MaterialPageRoute(
@@ -37,7 +39,7 @@ class SettingsScreen extends StatelessWidget {
                           },
                         ),
                         CostumeMenu(
-                          label: 'Catering',
+                          label: 'catering'.tr(),
                           onTap: () {
                             Navigator.of(context).push(
                               MaterialPageRoute(
@@ -47,7 +49,7 @@ class SettingsScreen extends StatelessWidget {
                           },
                         ),
                         CostumeMenu(
-                          label: 'Contact',
+                          label: 'contact'.tr(),
                           onTap: () {
                             Navigator.of(context).push(
                               MaterialPageRoute(
@@ -57,7 +59,7 @@ class SettingsScreen extends StatelessWidget {
                           },
                         ),
                         CostumeMenu(
-                          label: 'About us',
+                          label: 'aboutus'.tr(),
                           onTap: () {
                             Navigator.of(context).push(
                               MaterialPageRoute(
@@ -66,7 +68,16 @@ class SettingsScreen extends StatelessWidget {
                             );
                           },
                         ),
-                        CostumeMenu(label: 'Translation', onTap: () {}),
+                        CostumeMenu(
+                          label: 'translation'.tr(),
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => TranslationScreen(),
+                              ),
+                            );
+                          },
+                        ),
                       ],
                     ),
                   ),

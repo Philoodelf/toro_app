@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:toro_app/const/colors.dart';
 
@@ -24,7 +25,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
       });
     });
 
-    Future.delayed(Duration(seconds: 3), () {
+    Future.delayed(Duration(seconds: 2), () {
       setState(() {
         appear = true;
         animationsFinished=true;
@@ -73,13 +74,13 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                         ),
                       ),
                       AnimatedPositioned(
-                        duration: Duration(seconds: 3),
+                        duration: Duration(seconds: 2),
                         curve: Curves.bounceIn,
                         left: 10,
                         right: 20,
                         bottom: showText ? 180 : -60,
                         child: Text(
-                          'Experience the Mediterranean atmosphere',
+                          'aboutustitle'.tr(),
                           textAlign: TextAlign.start,
                           style: const TextStyle(
                             color: Colors.white,
@@ -108,15 +109,15 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                       curve: Curves.easeInOut,
                       child: AnimatedSlide(
                         offset: appear ? Offset.zero : const Offset(0, 0.2),
-                        duration: const Duration(seconds: 2),
+                        duration: const Duration(seconds: 1),
                         curve: Curves.easeOut,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
+                          children:  [
                             Padding(
                               padding: EdgeInsets.all(8.0),
                               child: Text(
-                                'Our story',
+                                'aboutustext'.tr(),
                                 style: TextStyle(
                                   fontSize: 30,
                                   fontWeight: FontWeight.w700,
@@ -127,7 +128,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                             Padding(
                               padding: EdgeInsets.all(8.0),
                               child: Text(
-                                "Located in the heart of Zutphen's vibrant city center, Restaurant Toro is a truly authentic Spanish-Argentine restaurant. With a view of the Wijnhuistoren (Wine House Tower), you'll feel like you're immersed in a Mediterranean atmosphere. Thanks to our friendly service and expert culinary skills, we've been awarded second place for the most fun and welcoming restaurant in Zutphen.",
+                                "aboutussubtexti".tr(),
                                 style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.w600,
@@ -139,7 +140,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                             Padding(
                               padding: EdgeInsets.all(8.0),
                               child: Text(
-                                "Our sunny terrace with plenty of shade also offers a wonderful spot for lunch, dinner or a nice drink in the summer months.",
+                                "aboutussubtextii".tr(),
                                 style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.w600,

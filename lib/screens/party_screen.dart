@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:toro_app/const/colors.dart';
 
@@ -24,19 +25,19 @@ class _PartyScreenState extends State<PartyScreen> {
       });
     });
 
-    Future.delayed(Duration(seconds: 3), () {
+    Future.delayed(Duration(seconds: 1), () {
       setState(() {
         visible = true;
       });
     });
 
-    Future.delayed(Duration(seconds: 7), () {
+    Future.delayed(Duration(seconds: 2), () {
       setState(() {
         div = true;
       });
     });
 
-    Future.delayed(Duration(seconds: 9), () {
+    Future.delayed(Duration(seconds: 2), () {
       setState(() {
         appear = true;
         animationsFinished = true;
@@ -80,13 +81,13 @@ class _PartyScreenState extends State<PartyScreen> {
                     children: [
                       Image.asset('assets/images/party.jpg', fit: BoxFit.cover),
                       AnimatedPositioned(
-                        duration: Duration(seconds: 3),
+                        duration: Duration(seconds: 2),
                         curve: Curves.bounceIn,
                         left: 10,
                         right: 20,
                         bottom: showText ? 160 : -70,
                         child: Text(
-                          'Celebrate your party in Argentine style',
+                          'partytitle'.tr(),
                           textAlign: TextAlign.start,
                           style: const TextStyle(
                             color: Colors.white,
@@ -114,15 +115,15 @@ class _PartyScreenState extends State<PartyScreen> {
                           visible
                               ? Offset.zero
                               : const Offset(-1.5, 0), // start from left
-                      duration: const Duration(seconds: 4),
+                      duration: const Duration(seconds: 2),
                       curve: Curves.easeOut,
                       child: AnimatedOpacity(
                         duration: const Duration(seconds: 2),
                         opacity: visible ? 1.0 : 0.0,
-                        child: const Padding(
+                        child:  Padding(
                           padding: EdgeInsets.all(8.0),
                           child: Text(
-                            'Planning a party, family day, or business meeting but unsure of a suitable venue? Our restaurant offers the perfect setting with its authentic Mediterranean atmosphere.',
+                            'partysubtitle'.tr(),
                             textAlign: TextAlign.start,
                             style: TextStyle(
                               fontSize: 20,
@@ -134,7 +135,7 @@ class _PartyScreenState extends State<PartyScreen> {
                       ),
                     ),
                     AnimatedContainer(
-                      duration: const Duration(seconds: 2),
+                      duration: const Duration(seconds: 1),
                       curve: Curves.easeOut,
                       width: div ? 300 : 0, // animate width
                       child: Divider(
@@ -148,15 +149,15 @@ class _PartyScreenState extends State<PartyScreen> {
                       curve: Curves.easeInOut,
                       child: AnimatedSlide(
                         offset: appear ? Offset.zero : const Offset(0, 0.2),
-                        duration: const Duration(seconds: 2),
+                        duration: const Duration(seconds: 1),
                         curve: Curves.easeOut,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
+                          children:  [
                             Padding(
                               padding: EdgeInsets.all(8.0),
                               child: Text(
-                                'Party',
+                                'partytext'.tr(),
                                 style: TextStyle(
                                   fontSize: 30,
                                   fontWeight: FontWeight.w700,
@@ -167,7 +168,7 @@ class _PartyScreenState extends State<PartyScreen> {
                             Padding(
                               padding: EdgeInsets.all(8.0),
                               child: Text(
-                                "Our restaurant features two separate rooms available for rent for a delicious lunch or a full dinner. For groups of eight or more, we can offer a diverse and colorful selection, entirely in Toro style, to suit your needs.",
+                                "partysubtexti".tr(),
                                 style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.w600,
@@ -179,7 +180,7 @@ class _PartyScreenState extends State<PartyScreen> {
                             Padding(
                               padding: EdgeInsets.all(8.0),
                               child: Text(
-                                "Our dishes can be paired with delicious Spanish and Argentinian wines, and combined with our Mediterranean atmosphere, it's sure to be a success. Curious about the possibilities? Feel free to contact us or simply drop by and experience the atmosphere.",
+                                "partysubtextii".tr(),
                                 style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.w600,

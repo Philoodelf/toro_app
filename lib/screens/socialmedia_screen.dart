@@ -1,5 +1,6 @@
 import 'dart:ffi';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -53,125 +54,9 @@ class SocialMediaScreen extends StatelessWidget {
         ),
         body: Column(
           children: [
-            SizedBox(
-              height: 250,
-              width: 350,
-              child: Image.asset('assets/images/logo_app.png'),
-            ),
+            Image.asset(AppColors.logo, height: 300, ),
 
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.center,
-            //   children: [
-            //     //?facebook
-            //     Padding(
-            //       padding: const EdgeInsets.only(left: 15),
-            //       child: Column(
-            //         children: [
-            //           InkWell(
-            //             onTap: () {
-            //               _launchURL(
-            //                 'https://www.facebook.com/restauranttorozutphen/',
-            //               );
-            //             },
-            //             borderRadius: BorderRadius.circular(
-            //               8,
-            //             ), // for rounded ripple
-            //             child: Column(
-            //               mainAxisSize: MainAxisSize.min,
-            //               children: [
-            //                 Icon(
-            //                   Icons.facebook,
-            //                   color: Color(0xff1877F2),
-            //                   size: 50,
-            //                 ),
-            //                 Text(
-            //                   'Facebook',
-            //                   style: TextStyle(
-            //                     color: Colors.blue,
-            //                     fontSize: 15,
-            //                     fontWeight: FontWeight.w600,
-            //                   ),
-            //                 ),
-            //               ],
-            //             ),
-            //           ),
-            //         ],
-            //       ),
-            //     ),
-            //     SizedBox(width: 35),
-            //     //?instagram
-            // Column(
-            //   children: [
-            //     InkWell(
-            //       onTap: () {
-            //         _launchURL('https://www.instagram.com/restaurant_toro/');
-            //       },
-            //       borderRadius: BorderRadius.circular(8),
-            //       child: ShaderMask(
-            //         shaderCallback: (bounds) {
-            //           return const LinearGradient(
-            //             begin: Alignment.bottomLeft,
-            //             end: Alignment.topRight,
-            //             colors: [
-            //               Color(0xFF833AB4), // Purple
-            //               Color(0xFFFD1D1D), // Red
-            //               Color(0xFFFCB045), // Orange
-            //             ],
-            //           ).createShader(bounds);
-            //         },
-            //         blendMode: BlendMode.srcIn,
-            //         child: Column(
-            //           mainAxisSize: MainAxisSize.min,
-            //           children: [
-            //             FaIcon(FontAwesomeIcons.instagram, size: 50),
-            //             Text(
-            //               'Instagram',
-            //               style: const TextStyle(
-            //                 fontSize: 15,
-            //                 fontWeight: FontWeight.w600,
-            //               ),
-            //             ),
-            //           ],
-            //         ),
-            //       ),
-            //     ),
-            //   ],
-            // ),
-            //     SizedBox(width: 25,),
-            //      Column(
-            //       children: [
-            //         InkWell(
-            //           onTap: () {
-            //             _launchURL(
-            //               'https://restaurant-toro.nl/',
-            //             );
-            //           },
-            //           borderRadius: BorderRadius.circular(
-            //             8,
-            //           ), // for rounded ripple
-            //           child: Column(
-            //             mainAxisSize: MainAxisSize.min,
-            //             children: [
-            //             Padding(
-            //               padding: const EdgeInsets.only(right: 4),
-            //               child: SizedBox(height: 50,width: 150, child: Image.asset('assets/images/logo_toro.png',)),
-            //             ),
-            //               Text(
-            //                 'Checkout our Page ',
-            //                 style: TextStyle(
-            //                   color: Colors.black,
-            //                   fontSize: 15,
-            //                   fontWeight: FontWeight.w600,
-            //                 ),
-            //               ),
-            //             ],
-            //           ),
-            //         ),
-            //       ],
-            //     ),
-
-            //   ],
-            // ),
+         
             Center(
               child: SizedBox(
                 width: MediaQuery.of(context).size.width * 0.8,
@@ -189,7 +74,7 @@ class SocialMediaScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Address',
+                        'address'.tr(),
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 20,
@@ -233,7 +118,7 @@ class SocialMediaScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Number',
+                          'number'.tr(),
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 20,
@@ -271,16 +156,13 @@ class SocialMediaScreen extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 18),
-                  child: SocialMedia(
-                    icon: Icons.language,
-                    text: "Website",
-                    color: Colors.black,
-                    onTap: () {
-                      _launchURL("https://restaurant-toro.nl/");
-                    },
-                  ),
+                SocialMedia(
+                  icon: Icons.language,
+                  text: 'website'.tr(),
+                  color: const Color.fromARGB(255, 15, 11, 11),
+                  onTap: () {
+                    _launchURL("https://restaurant-toro.nl/");
+                  },
                 ),
 
                 const SizedBox(height: 12),
@@ -288,7 +170,7 @@ class SocialMediaScreen extends StatelessWidget {
                   padding: const EdgeInsets.only(right: 5),
                   child: SocialMedia(
                     icon: Icons.facebook,
-                    text: "Facebook",
+                    text: 'facebook'.tr(),
                     color: const Color(0xff1877F2),
                     onTap: () {
                       _launchURL(
@@ -303,7 +185,7 @@ class SocialMediaScreen extends StatelessWidget {
                   icon:
                       FontAwesomeIcons
                           .instagram, // if using font_awesome_flutter
-                  text: "Instagram",
+                  text: 'Instagram'.tr(),
                   gradient: const LinearGradient(
                     begin: Alignment.bottomLeft,
                     end: Alignment.topRight,
@@ -319,103 +201,7 @@ class SocialMediaScreen extends StatelessWidget {
                 ),
               ],
             ),
-            //   //? copy address
-            //   Padding(
-            //     padding: const EdgeInsets.symmetric(horizontal: 8),
-            //     child: Column(
-            //       crossAxisAlignment: CrossAxisAlignment.start,
-            //       children: [
-            //         const Text(
-            //           'Address',
-            //           style: TextStyle(
-            //             fontWeight: FontWeight.bold,
-            //             fontSize: 24,
-            //             color: AppColors.secondAppColor,
-            //           ),
-            //         ),
-            //         const SizedBox(height: 10),
-            //         Container(
-            //           width: double.infinity,
-            //           padding: const EdgeInsets.symmetric(
-            //             horizontal: 12,
-            //             vertical: 8,
-            //           ),
-            //           decoration: BoxDecoration(
-            //             color: Colors.orange,
-            //             border: Border.all(color: Colors.black, width: 1.5),
-            //             borderRadius: BorderRadius.circular(8),
-            //           ),
-            //           child: Row(
-            //            // mainAxisSize: MainAxisSize.min,
-            //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //             children: [
-            //               Expanded(
-            //                 child: Text(
-            //                   addressText,
-            //                   style: const TextStyle(color: AppColors.mainAppColor, fontSize: 18, fontWeight: FontWeight.w600),
-            //                 ),
-            //               ),
-            //               const SizedBox(width: 8),
-            //               IconButton(
-            //                 icon: const Icon(Icons.copy, color: Colors.black),
-            //                 onPressed: () => copyText(context, addressText),
-            //                 tooltip: 'Copy Address',
-            //               ),
-            //             ],
-            //           ),
-            //         ),
-            //       ],
-            //     ),
-            //   ),
-            //   //? copy number
-            //  Padding(
-            //    padding: const EdgeInsets.only(left: 8,right: 170, top: 8, ),
-            //    child: Column(
-            //        crossAxisAlignment: CrossAxisAlignment.start,
-            //       // mainAxisAlignment: MainAxisAlignment.start,
-            //       children: [
-            //         const Text(
-            //           'Number',
-            //           style: TextStyle(
-            //             fontWeight: FontWeight.bold,
-            //             fontSize: 24,
-            //             color: AppColors.secondAppColor,
-            //           ),
-            //         ),
-            //         const SizedBox(height: 10),
-            //         Container(
-            //           width: double.infinity,
-            //           padding: const EdgeInsets.symmetric(
-            //             horizontal: 12,
-            //             vertical: 8,
-            //           ),
-            //           decoration: BoxDecoration(
-            //             color: Colors.orange,
-            //             border: Border.all(color: Colors.black, width: 1.5),
-            //             borderRadius: BorderRadius.circular(8),
-            //           ),
-            //           child: Row(
-            //            // mainAxisSize: MainAxisSize.min,
-            //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //             children: [
-            //               Expanded(
-            //                 child: Text(
-            //                   noText,
-            //                   style: const TextStyle(color: AppColors.mainAppColor, fontSize: 18, fontWeight: FontWeight.w600),
-            //                 ),
-            //               ),
-            //               const SizedBox(width: 8),
-            //               IconButton(
-            //                 icon: const Icon(Icons.copy, color: Colors.black),
-            //                 onPressed: () => copyText(context, noText),
-            //                 tooltip: 'Copy Number',
-            //               ),
-            //             ],
-            //           ),
-            //   ),
-            // ],
-            //     ),
-            //  ),
+            
           ],
         ),
       ),
@@ -465,12 +251,7 @@ class SocialMedia extends StatelessWidget {
               text,
               style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-            // Icon(icon, size: 35, color: color),
-            // const SizedBox(width: 6),
-            // Text(
-            //   text,
-            //   style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            // ),
+           
           ],
         ),
       ),

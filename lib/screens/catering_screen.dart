@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:toro_app/const/colors.dart';
 
@@ -24,19 +25,19 @@ class _CateringScreenState extends State<CateringScreen> {
       });
     });
 
-    Future.delayed(Duration(seconds: 3), () {
+    Future.delayed(Duration(seconds: 1), () {
       setState(() {
         visible = true;
       });
     });
 
-    Future.delayed(Duration(seconds: 7), () {
+    Future.delayed(Duration(seconds: 2), () {
       setState(() {
         div = true;
       });
     });
 
-    Future.delayed(Duration(seconds: 9), () {
+    Future.delayed(Duration(seconds: 2), () {
       setState(() {
         appear = true;
         animationsFinished=true;
@@ -82,13 +83,13 @@ class _CateringScreenState extends State<CateringScreen> {
                         fit: BoxFit.cover,
                       ),
                       AnimatedPositioned(
-                        duration: Duration(seconds: 3),
+                        duration: Duration(seconds: 2),
                         curve: Curves.bounceIn,
                         left: 10,
                         right: 20,
                         bottom: showText ? 160 : -70,
                         child: Text(
-                          'Surprise your visitors with our kitchen',
+                          'cateringtitle'.tr(),
                           textAlign: TextAlign.start,
                           style: const TextStyle(
                             color: Colors.white,
@@ -116,15 +117,15 @@ class _CateringScreenState extends State<CateringScreen> {
                           visible
                               ? Offset.zero
                               : const Offset(-1.5, 0), // start from left
-                      duration: const Duration(seconds: 4),
+                      duration: const Duration(seconds: 2),
                       curve: Curves.easeOut,
                       child: AnimatedOpacity(
                         duration: const Duration(seconds: 2),
                         opacity: visible ? 1.0 : 0.0,
-                        child: const Padding(
+                        child: Padding(
                           padding: EdgeInsets.all(8.0),
                           child: Text(
-                            'Spanish-Argentine restaurant Toro is also the perfect place for catering. Whether you have a group of 10 or a large party of 1000, we can arrange it for you.',
+                            'cateringsubtitle'.tr(),
                             textAlign: TextAlign.start,
                             style: TextStyle(
                               fontSize: 20,
@@ -136,7 +137,7 @@ class _CateringScreenState extends State<CateringScreen> {
                       ),
                     ),
                     AnimatedContainer(
-                      duration: const Duration(seconds: 2),
+                      duration: const Duration(seconds: 1),
                       curve: Curves.easeOut,
                       width: div ? 300 : 0, // animate width
                       child: Divider(
@@ -150,15 +151,15 @@ class _CateringScreenState extends State<CateringScreen> {
                       curve: Curves.easeInOut,
                       child: AnimatedSlide(
                         offset: appear ? Offset.zero : const Offset(0, 0.2),
-                        duration: const Duration(seconds: 2),
+                        duration: const Duration(seconds: 1),
                         curve: Curves.easeOut,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
+                          children:  [
                             Padding(
                               padding: EdgeInsets.all(8.0),
                               child: Text(
-                                'Catering',
+                                'cateringtext'.tr(),
                                 style: TextStyle(
                                   fontSize: 30,
                                   fontWeight: FontWeight.w700,
@@ -169,7 +170,7 @@ class _CateringScreenState extends State<CateringScreen> {
                             Padding(
                               padding: EdgeInsets.all(8.0),
                               child: Text(
-                                "Are you planning a party or gathering? And is catering just the thing you're struggling with? We can take care of it for you. Together, we'll create the menu and discuss your preferences. We offer a wide range of options, including vegetarian, fully organic, and slow-cooked options. Even if you have a specific theme in mind, we'll tailor the dishes to your needs.",
+                                "cateringsubtexti".tr(),
                                 style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.w600,
@@ -181,7 +182,7 @@ class _CateringScreenState extends State<CateringScreen> {
                             Padding(
                               padding: EdgeInsets.all(8.0),
                               child: Text(
-                                "Our chefs will create the appropriate dishes for every occasion and in combination with the wines from our menu the experience will be complete.",
+                                "cateringsubtextii".tr(),
                                 style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.w600,

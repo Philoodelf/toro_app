@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:toro_app/const/colors.dart';
 
@@ -24,19 +25,19 @@ class _ContactScreenState extends State<ContactScreen> {
       });
     });
 
-    Future.delayed(Duration(seconds: 3), () {
+    Future.delayed(Duration(seconds: 1), () {
       setState(() {
         visible = true;
       });
     });
 
-    Future.delayed(Duration(seconds: 7), () {
+    Future.delayed(Duration(seconds: 2), () {
       setState(() {
         div = true;
       });
     });
 
-    Future.delayed(Duration(seconds: 9), () {
+    Future.delayed(Duration(seconds: 2), () {
       setState(() {
         appear = true;
         animationsFinished = true;
@@ -79,13 +80,13 @@ class _ContactScreenState extends State<ContactScreen> {
                     children: [
                       Image.asset('assets/images/party.jpg', fit: BoxFit.cover),
                       AnimatedPositioned(
-                        duration: Duration(seconds: 3),
+                        duration: Duration(seconds: 2),
                         curve: Curves.bounceIn,
                         left: 10,
                         right: 20,
                         bottom: showText ? 160 : -70,
                         child: Text(
-                          'Will we see you\n soon?',
+                          'contacttitle'.tr(),
                           textAlign: TextAlign.start,
                           style: const TextStyle(
                             color: Colors.white,
@@ -113,15 +114,15 @@ class _ContactScreenState extends State<ContactScreen> {
                           visible
                               ? Offset.zero
                               : const Offset(-1.5, 0), // start from left
-                      duration: const Duration(seconds: 4),
+                      duration: const Duration(seconds: 2),
                       curve: Curves.easeOut,
                       child: AnimatedOpacity(
                         duration: const Duration(seconds: 2),
                         opacity: visible ? 1.0 : 0.0,
-                        child: const Padding(
+                        child:  Padding(
                           padding: EdgeInsets.all(8.0),
                           child: Text(
-                            'Curious or want more information? Our contact details are below. If you have any questions, please let us know and we\'ll answer them as quickly as possible.',
+                            'contactsubtitle'.tr(),
                             textAlign: TextAlign.start,
                             style: TextStyle(
                               fontSize: 20,
@@ -133,7 +134,7 @@ class _ContactScreenState extends State<ContactScreen> {
                       ),
                     ),
                     AnimatedContainer(
-                      duration: const Duration(seconds: 2),
+                      duration: const Duration(seconds: 1),
                       curve: Curves.easeOut,
                       width: div ? 300 : 0, // animate width
                       child: Divider(
@@ -147,15 +148,15 @@ class _ContactScreenState extends State<ContactScreen> {
                       curve: Curves.easeInOut,
                       child: AnimatedSlide(
                         offset: appear ? Offset.zero : const Offset(0, 0.2),
-                        duration: const Duration(seconds: 2),
+                        duration: const Duration(seconds: 1),
                         curve: Curves.easeOut,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
+                          children:  [
                             Padding(
                               padding: EdgeInsets.all(8.0),
                               child: Text(
-                                'Contact',
+                                'contacttext'.tr(),
                                 style: TextStyle(
                                   fontSize: 30,
                                   fontWeight: FontWeight.w700,
@@ -166,7 +167,7 @@ class _ContactScreenState extends State<ContactScreen> {
                             Padding(
                               padding: EdgeInsets.all(8.0),
                               child: Text(
-                                "Our restaurant is located on the edge of Zutphen's market square. We're easily accessible, and there's ample parking around the restaurant. Are you coming by public transport? We're within walking distance of the bus and train stations.",
+                                "contactsubtext".tr(),
                                 style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.w600,
@@ -175,17 +176,17 @@ class _ContactScreenState extends State<ContactScreen> {
                               ),
                             ),
                             SizedBox(height: 16),
-                            Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                "Our dishes can be paired with delicious Spanish and Argentinian wines, and combined with our Mediterranean atmosphere, it's sure to be a success. Curious about the possibilities? Feel free to contact us or simply drop by and experience the atmosphere.",
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
+                            // Padding(
+                            //   padding: EdgeInsets.all(8.0),
+                            //   child: Text(
+                            //     "Our dishes can be paired with delicious Spanish and Argentinian wines, and combined with our Mediterranean atmosphere, it's sure to be a success. Curious about the possibilities? Feel free to contact us or simply drop by and experience the atmosphere.",
+                            //     style: TextStyle(
+                            //       fontSize: 18,
+                            //       fontWeight: FontWeight.w600,
+                            //       color: Colors.white,
+                            //     ),
+                            //   ),
+                            // ),
                             SizedBox(height: 18),
                           ],
                         ),
