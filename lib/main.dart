@@ -12,7 +12,8 @@ void main() async {
     EasyLocalization(
       supportedLocales: const [
         Locale('en'),
-        Locale('nl'), // Dutch
+        Locale('nl'),
+        Locale('de'), // Dutch
       ],
       path: 'assets/lang',
       fallbackLocale: const Locale('nl'),
