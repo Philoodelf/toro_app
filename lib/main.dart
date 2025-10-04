@@ -16,7 +16,8 @@ void main() async {
         Locale('de'), // Dutch
       ],
       path: 'assets/lang',
-      fallbackLocale: const Locale('nl'),
+      fallbackLocale: const Locale('en'),
+      useOnlyLangCode: true,
       child: const MyApp(),
     ),
   );

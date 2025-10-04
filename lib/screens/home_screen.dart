@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:toro_app/const/colors.dart';
+import 'package:toro_app/screens/menu_screen.dart';
 import 'package:toro_app/screens/socialmedia_screen.dart';
 
 import 'package:toro_app/widgets/costumemenu.dart';
@@ -23,7 +24,13 @@ class HomeScreen extends StatelessWidget {
                   CostumeMenu(
                     label: 'menu'.tr(),
                     icon: Icons.menu_book_rounded,
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const MenuScreen(),
+                        ),
+                      );
+                    },
                   ),
                   CostumeMenu(
                     label: 'reservation'.tr(),
