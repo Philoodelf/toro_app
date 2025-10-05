@@ -23,7 +23,7 @@ class MenuCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 240,
+      height: 250,
       width: 404,
       child: Stack(
         children: [
@@ -35,7 +35,7 @@ class MenuCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 40, left: 50),
+                padding: const EdgeInsets.only(top: 25, left: 25),
                 child: Text(
                   title,
                   style: TextStyle(
@@ -54,9 +54,9 @@ class MenuCard extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 20),
               Padding(
-                padding: const EdgeInsets.only(left: 33, right: 20),
+                padding: const EdgeInsets.only(left: 24, right: 20),
                 child: Text(
                   description,
                   style: const TextStyle(

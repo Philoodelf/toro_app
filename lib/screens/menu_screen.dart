@@ -169,10 +169,10 @@ class _MenuScreenState extends State<MenuScreen> {
                             Column(
                               children: [
                                 recommendationItem(
-                                  title: 'Sea bream fries',
+                                  title: 'menurecommendation1'.tr(),
                                   price: '€31.50',
                                   description:
-                                      'Fried sea bream with lemon, garlic and tomato',
+                                      'menurecommendation1des'.tr(),
                                 ),
                                 SizedBox(
                                   width: 360,
@@ -188,10 +188,10 @@ class _MenuScreenState extends State<MenuScreen> {
                                 ),
                                 const SizedBox(height: 20),
                                 recommendationItem(
-                                  title: 'Sorpresa de gamba\'s envuelto',
+                                  title: 'menurecommendation2'.tr(),
                                   price: '€34.50',
                                   description:
-                                      'Surprise of prawns rolled in veal with cream sauce',
+                                      'menurecommendation2des'.tr(),
                                 ),
                                 SizedBox(
                                   width: 360,
@@ -207,9 +207,9 @@ class _MenuScreenState extends State<MenuScreen> {
                                 ),
                                 const SizedBox(height: 20),
                                 recommendationItem(
-                                  title: 'Cordero con higos',
+                                  title: 'menurecommendation3'.tr(),
                                   price: '€32.50',
-                                  description: 'Lamb with plums and sesame',
+                                  description: 'menurecommendation3des'.tr(),
                                 ),
                                 SizedBox(
                                   width: 360,
@@ -225,10 +225,10 @@ class _MenuScreenState extends State<MenuScreen> {
                                 ),
                                 const SizedBox(height: 20),
                                 recommendationItem(
-                                  title: 'Chuleton',
+                                  title: 'menurecommendation4'.tr(),
                                   price: '€39.50',
                                   description:
-                                      'Dry aged Rib Eye with herb butter and vegetable skewers',
+                                      'menurecommendation4des'.tr(),
                                 ),
                                 SizedBox(
                                   width: 360,
@@ -244,9 +244,9 @@ class _MenuScreenState extends State<MenuScreen> {
                                 ),
                                 const SizedBox(height: 20),
                                 recommendationItem(
-                                  title: 'Filete con Chimichurri',
+                                  title: 'menurecommendation5'.tr(),
                                   price: '€35.50',
-                                  description: 'Steak with Chimichurri Sauce',
+                                  description: 'menurecommendation5des'.tr(),
                                 ),
                               ],
                             ),
@@ -263,7 +263,7 @@ class _MenuScreenState extends State<MenuScreen> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                'Download onze kaarten',
+                                'downloadtext'.tr(),
                                 style: TextStyle(
                                   fontSize: 30,
                                   fontWeight: FontWeight.w700,
@@ -278,32 +278,33 @@ class _MenuScreenState extends State<MenuScreen> {
                               child: Row(
                                 children: [
                                   //? first menu
-                                  MenuCard(
+                                   MenuCard(
                                     imagePath: 'assets/images/party.jpg',
-                                    title: 'Dessert',
+                                    title: 'lunchtitle'.tr(),
                                     description:
-                                        'Finish your dinner with one of our delicious desserts or a special coffee.',
+                                        'lunchmenu'.tr(),
                                     pdfUrl:
-                                        'https://restaurant-toro.nl/nieuw/wp-content/uploads/2019/08/DIG-C-V4-Menukaart-dessert-.pdf',
+                                        'https://restaurant-toro.nl/nieuw/wp-content/uploads/2019/08/DIG-C-Toro-Menukaart-Map-Lunchdiner-V5.pdf',
                                   ),
+                                 
                                 
                                   //? second menu
                                    MenuCard(
                                     imagePath: 'assets/images/party.jpg',
-                                    title: 'Drinks',
+                                    title: 'drinkstitle'.tr(),
                                     description:
-                                        'Finish your dinner with one of our delicious desserts or a special coffee.',
+                                        'drinksmenu'.tr(),
                                     pdfUrl:
                                         'https://restaurant-toro.nl/nieuw/wp-content/uploads/2019/08/DIG-C-V4-Drankenborrelhapjes-kaart.pdf',
                                   ),
                                   //? third menu
                                    MenuCard(
                                     imagePath: 'assets/images/party.jpg',
-                                    title: 'Launch and Dinner',
+                                    title: 'desserttitle'.tr(),
                                     description:
-                                        'Finish your dinner with one of our delicious desserts or a special coffee.',
+                                        'dessertmenu'.tr(),
                                     pdfUrl:
-                                        'https://restaurant-toro.nl/nieuw/wp-content/uploads/2019/08/DIG-C-Toro-Menukaart-Map-Lunchdiner-V5.pdf',
+                                        'https://restaurant-toro.nl/nieuw/wp-content/uploads/2019/08/DIG-C-V4-Menukaart-dessert-.pdf',
                                   ),
                                 ],
                               ),
