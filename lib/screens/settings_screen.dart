@@ -29,6 +29,16 @@ class SettingsScreen extends StatelessWidget {
                       spacing: 12,
                       children: [
                         CostumeMenu(
+                          label: 'translation'.tr(),
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => TranslationScreen(),
+                              ),
+                            );
+                          },
+                        ),
+                        CostumeMenu(
                           label: 'party'.tr(),
                           onTap: () {
                             Navigator.of(context).push(
@@ -64,16 +74,6 @@ class SettingsScreen extends StatelessWidget {
                             Navigator.of(context).push(
                               MaterialPageRoute(
                                 builder: (context) => AboutUsScreen(),
-                              ),
-                            );
-                          },
-                        ),
-                        CostumeMenu(
-                          label: 'translation'.tr(),
-                          onTap: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => TranslationScreen(),
                               ),
                             );
                           },
