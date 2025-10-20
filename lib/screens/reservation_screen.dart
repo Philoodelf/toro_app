@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:toro_app/const/colors.dart';
+import 'package:toro_app/screens/date_select_screen.dart';
+import 'package:toro_app/screens/select_time_screen.dart';
 
 class ReservationScreen extends StatefulWidget {
   const ReservationScreen({super.key});
@@ -58,7 +60,7 @@ class _ReservationScreenState extends State<ReservationScreen> {
                   textAlign: TextAlign.center,
                 ),
               ),
-              SizedBox(height: 30),
+              SizedBox(height: 20),
               SizedBox(
                 width: 370,
                 child: Container(
@@ -73,6 +75,7 @@ class _ReservationScreenState extends State<ReservationScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
+                          //! person
                           TextButton.icon(
                             onPressed: () {
                               setState(() {
@@ -92,11 +95,17 @@ class _ReservationScreenState extends State<ReservationScreen> {
                               ),
                             ),
                           ),
-
+                          //! Calendar
                           TextButton.icon(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                  builder: (context) => SelectDateScreen(),
+                                ),
+                              );
+                            },
                             icon: Icon(
-                              Icons.calendar_month,
+                              Icons.calendar_month_outlined,
                               color: Colors.white,
                               size: 30,
                             ),
@@ -108,44 +117,60 @@ class _ReservationScreenState extends State<ReservationScreen> {
                               ),
                             ),
                           ),
-                          TextButton.icon(
-                            onPressed: () {},
-                            icon: Icon(
-                              Icons.access_time_outlined,
-                              color: Colors.white,
-                              size: 30,
-                            ),
-                            label: Text(
-                              'Time',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                              ),
-                            ),
-                          ),
+                          //! Time
+                          // TextButton.icon(
+                          //   onPressed: () {
+                          //   },
+                          //   icon: Icon(
+                          //     Icons.access_time_outlined,
+                          //     color: Colors.white,
+                          //     size: 30,
+                          //   ),
+                          //   label: Text(
+                          //     'Time',
+                          //     style: TextStyle(
+                          //       color: Colors.white,
+                          //       fontSize: 20,
+                          //     ),
+                          //   ),
+                          // ),
                         ],
                       ),
                     ],
                   ),
                 ),
               ),
-              SizedBox(height: 12),
+              SizedBox(height: 5),
 
               Visibility(
                 visible: showPersonsGrid,
                 child: Column(
                   children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(FontAwesomeIcons.users, color: Colors.white),
+                          SizedBox(width: 18),
+                          Text(
+                            'How many guests?',
+                            style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w600
+                          ),),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 5),
                     SizedBox(
                       height: 300,
                       child: GridView.builder(
                         itemCount: itemCount,
-                        gridDelegate:
-                             SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              crossAxisSpacing: 2,
-                              mainAxisSpacing: 2,
-                              childAspectRatio: aspectRatio,
-                            ),
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 2,
+                          mainAxisSpacing: 2,
+                          childAspectRatio: aspectRatio,
+                        ),
                         itemBuilder: (BuildContext context, int index) {
                           return Card(
                             color: AppColors.secondAppColor.withOpacity(0.8),
@@ -174,10 +199,14 @@ class _ReservationScreenState extends State<ReservationScreen> {
                           setState(() {
                             itemCount = 40;
                             showAdd = false;
-                            aspectRatio=2;
+                            aspectRatio = 2;
                           });
                         },
-                        icon: Icon(Icons.add_circle_outline, size: 30, color: AppColors.secondAppColor,),
+                        icon: Icon(
+                          Icons.add_circle_outline,
+                          size: 30,
+                          color: AppColors.secondAppColor,
+                        ),
                       ),
                     ),
                   ],

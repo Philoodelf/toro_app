@@ -35,7 +35,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                   CostumeMenu(
                     label: 'reservation'.tr(),
-                    icon: Icons.calendar_today_outlined,
+                    icon: Icons.calendar_month_outlined,
                     onTap: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
