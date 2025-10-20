@@ -57,7 +57,7 @@ class _DateSelectState extends State<SelectDateScreen> {
           ),
         ),
       );
-      Navigator.of(context).pushReplacement(
+      Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (context) => SelectTimeScreen(
                             selectedDate: _selectedDay!,

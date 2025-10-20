@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:toro_app/const/colors.dart';
 import 'package:toro_app/screens/date_select_screen.dart';
+import 'package:toro_app/screens/home_screen.dart';
 import 'package:toro_app/screens/select_time_screen.dart';
+import 'package:toro_app/widgets/button_nav.dart';
 
 class ReservationScreen extends StatefulWidget {
   const ReservationScreen({super.key});
@@ -34,7 +36,10 @@ class _ReservationScreenState extends State<ReservationScreen> {
                 size: 35,
               ),
               onPressed: () {
-                Navigator.pop(context); // Goes back to the last screen
+                Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) => ButtonNav()),
+                  (Route<dynamic> route) => false,
+                ); // Goes back to the last screen
               },
             ),
           ),
@@ -155,8 +160,12 @@ class _ReservationScreenState extends State<ReservationScreen> {
                           SizedBox(width: 18),
                           Text(
                             'How many guests?',
-                            style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w600
-                          ),),
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
                         ],
                       ),
                     ),
