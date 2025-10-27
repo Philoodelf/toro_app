@@ -44,7 +44,7 @@ class _DateSelectState extends State<SelectDateScreen> {
     }
   }
 
-  void _saveReservation() {
+  void _saveReservation() async {
     if (_selectedDay != null) {
       final formattedDate = DateFormat('yyyy-MM-dd').format(_selectedDay!);
       debugPrint('Reservation saved for date: $formattedDate');
@@ -57,13 +57,25 @@ class _DateSelectState extends State<SelectDateScreen> {
           ),
         ),
       );
-      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => SelectTimeScreen(
-                            selectedDate: _selectedDay!,
-                          ),
-                        ),
-                      );
+
+      final selectedTime = await Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => SelectTimeScreen(selectedDate: _selectedDay!),
+        ),
+      );
+
+      if (selectedTime != null) {
+        // Return both date and time to ReservationScreen
+        Navigator.pop(context, {'date': _selectedDay!, 'time': selectedTime});
+      }
+
+      // Navigator.of(context).push(
+      //                   MaterialPageRoute(
+      //                     builder: (context) => SelectTimeScreen(
+      //                       selectedDate: _selectedDay!,
+      //                     ),
+      //                   ),
+      //                 );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -100,19 +112,27 @@ class _DateSelectState extends State<SelectDateScreen> {
         body: Column(
           children: [
             Padding(
-                      padding: const EdgeInsets.all(18),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(Icons.calendar_month_outlined, color: Colors.white, size: 40,),
-                          SizedBox(width: 10),
-                          Text(
-                            'For what day?',
-                            style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.w600
-                          ),),
-                        ],
-                      ),
+              padding: const EdgeInsets.all(18),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.calendar_month_outlined,
+                    color: Colors.white,
+                    size: 40,
+                  ),
+                  SizedBox(width: 10),
+                  Text(
+                    'For what day?',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 30,
+                      fontWeight: FontWeight.w600,
                     ),
+                  ),
+                ],
+              ),
+            ),
             const SizedBox(height: 28),
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 16),
@@ -189,8 +209,8 @@ class _DateSelectState extends State<SelectDateScreen> {
                 ),
               ),
             ),
-           // const Spacer(),
-           const SizedBox(height: 12),
+            // const Spacer(),
+            const SizedBox(height: 12),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: ElevatedButton.icon(
@@ -209,7 +229,11 @@ class _DateSelectState extends State<SelectDateScreen> {
                 ),
                 label: const Text(
                   'Confirm Date',
-                  style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.w500),
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ),
             ),

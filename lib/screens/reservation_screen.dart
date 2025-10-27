@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:toro_app/const/colors.dart';
 import 'package:toro_app/screens/date_select_screen.dart';
-import 'package:toro_app/screens/home_screen.dart';
-import 'package:toro_app/screens/select_time_screen.dart';
+import 'package:toro_app/screens/reservation_details_screen.dart';
 import 'package:toro_app/widgets/button_nav.dart';
 
 class ReservationScreen extends StatefulWidget {
@@ -14,6 +13,10 @@ class ReservationScreen extends StatefulWidget {
 }
 
 class _ReservationScreenState extends State<ReservationScreen> {
+  DateTime? _selectedDate;
+  DateTime? _selectedTime;
+
+  int? _selectedGuests;
   bool showPersonsGrid = false;
   int itemCount = 20;
   bool showAdd = true;
@@ -102,13 +105,30 @@ class _ReservationScreenState extends State<ReservationScreen> {
                           ),
                           //! Calendar
                           TextButton.icon(
-                            onPressed: () {
-                              Navigator.of(context).pushReplacement(
+                            onPressed: () async {
+                              // Wait for the result returned from SelectDateScreen
+                              final result = await Navigator.push(
+                                context,
                                 MaterialPageRoute(
-                                  builder: (context) => SelectDateScreen(),
+                                  builder:
+                                      (context) => const SelectDateScreen(),
                                 ),
                               );
+
+                              if (result != null && mounted) {
+                                setState(() {
+                                  _selectedDate = result['date'];
+                                  _selectedTime = result['time'];
+                                });
+                              }
                             },
+                            //  {
+                            //   Navigator.of(context).pushReplacement(
+                            //     MaterialPageRoute(
+                            //       builder: (context) => SelectDateScreen(),
+                            //     ),
+                            //   );
+                            // },
                             icon: Icon(
                               Icons.calendar_month_outlined,
                               color: Colors.white,
@@ -146,6 +166,15 @@ class _ReservationScreenState extends State<ReservationScreen> {
                 ),
               ),
               SizedBox(height: 5),
+              if (_selectedDate != null && _selectedTime != null)
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 12.0),
+                  child: Text(
+                    'Selected: ${_selectedDate != null ? '${_selectedDate!.day}-${_selectedDate!.month}-${_selectedDate!.year}' : ''} at ${_selectedTime != null ? '${_selectedTime!.hour.toString().padLeft(2, '0')}:${_selectedTime!.minute.toString().padLeft(2, '0')}' : ''}',
+                    style: const TextStyle(color: Colors.white, fontSize: 18),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
 
               Visibility(
                 visible: showPersonsGrid,
@@ -181,19 +210,46 @@ class _ReservationScreenState extends State<ReservationScreen> {
                           childAspectRatio: aspectRatio,
                         ),
                         itemBuilder: (BuildContext context, int index) {
-                          return Card(
-                            color: AppColors.secondAppColor.withOpacity(0.8),
-                            elevation: 2,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Center(
-                              child: Text(
-                                '${index + 1}',
-                                style: const TextStyle(
-                                  fontSize: 24,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
+                          final int number = index + 1;
+                          final bool isSelected = _selectedGuests == number;
+
+                          return GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                _selectedGuests = number;
+                              });
+                              debugPrint('Selected guests: $_selectedGuests');
+                            },
+                            child: Card(
+                              color:
+                                  isSelected
+                                      ? Colors
+                                          .white // highlight background
+                                      : AppColors.secondAppColor.withOpacity(
+                                        0.8,
+                                      ),
+                              elevation: isSelected ? 6 : 2,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8),
+                                side: BorderSide(
+                                  color:
+                                      isSelected
+                                          ? Colors.white
+                                          : Colors.transparent,
+                                  width: 2,
+                                ),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  '$number',
+                                  style: TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                    color:
+                                        isSelected
+                                            ? AppColors.secondAppColor
+                                            : Colors.white,
+                                  ),
                                 ),
                               ),
                             ),
@@ -232,7 +288,34 @@ class _ReservationScreenState extends State<ReservationScreen> {
                       AppColors.secondAppColor,
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    if (_selectedGuests == null ||
+                        _selectedDate == null ||
+                        _selectedTime == null) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text(
+                            'Please select number of guests, date, and time first!',
+                          ),
+                        ),
+                      );
+                    } else {
+                      //? Continue to next step (e.g., send reservation to API)
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder:
+                              (context) => ReservationDetailsScreen(
+                                selectedDate: _selectedDate!,
+                                selectedTime: _selectedTime!,
+                                selectedGuests: _selectedGuests!,
+                              ),
+                        ),
+                      );
+                      debugPrint('Guests: $_selectedGuests');
+                      debugPrint('Date: $_selectedDate');
+                      debugPrint('Time: $_selectedTime');
+                    }
+                  },
                   icon: Icon(Icons.search_sharp, color: Colors.white, size: 30),
                   label: Text(
                     'FIND A TABLE',
@@ -240,6 +323,7 @@ class _ReservationScreenState extends State<ReservationScreen> {
                   ),
                 ),
               ),
+              SizedBox(height: 15,),
             ],
           ),
         ),

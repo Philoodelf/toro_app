@@ -81,7 +81,8 @@ class _SelectTimeScreenState extends State<SelectTimeScreen> {
         ),
       ),
     );
-    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ReservationScreen()));
+     Navigator.pop(context, selectedTime);
+    //Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ReservationScreen()));
   }
 
   bool isSameDay(DateTime a, DateTime b) {
