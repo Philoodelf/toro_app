@@ -51,8 +51,9 @@ class _DateSelectState extends State<SelectDateScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           backgroundColor: AppColors.secondAppColor,
+          //! fix translation here 
           content: Text(
-            'Date saved for $formattedDate',
+            'Date saved for $formattedDate'.tr(),
             style: const TextStyle(color: Colors.white),
           ),
         ),
@@ -80,8 +81,8 @@ class _DateSelectState extends State<SelectDateScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           backgroundColor: Colors.red.shade700,
-          content: const Text(
-            'Please select a date first!',
+          content: Text(
+            'Please select a date first!'.tr(),
             style: TextStyle(color: Colors.white),
           ),
         ),
@@ -123,7 +124,7 @@ class _DateSelectState extends State<SelectDateScreen> {
                   ),
                   SizedBox(width: 10),
                   Text(
-                    'For what day?',
+                    'For what day?'.tr(),
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 30,
@@ -227,8 +228,8 @@ class _DateSelectState extends State<SelectDateScreen> {
                   color: Colors.white,
                   size: 25,
                 ),
-                label: const Text(
-                  'Confirm Date',
+                label: Text(
+                  'Confirm Date'.tr(),
                   style: TextStyle(
                     fontSize: 18,
                     color: Colors.white,

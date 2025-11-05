@@ -66,7 +66,7 @@ class _SelectTimeScreenState extends State<SelectTimeScreen> {
   void _confirmReservation() {
     if (selectedTime == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please select a time first!')),
+        SnackBar(content: Text('Please select a time first!'.tr())),
       );
       return;
     }
@@ -75,13 +75,14 @@ class _SelectTimeScreenState extends State<SelectTimeScreen> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         backgroundColor: AppColors.secondAppColor,
+        //! translation here too
         content: Text(
-          'Reservation saved at $formatted',
+          'Reservation saved at $formatted'.tr(),
           style: const TextStyle(color: Colors.white),
         ),
       ),
     );
-     Navigator.pop(context, selectedTime);
+    Navigator.pop(context, selectedTime);
     //Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ReservationScreen()));
   }
 
@@ -111,41 +112,55 @@ class _SelectTimeScreenState extends State<SelectTimeScreen> {
         ),
         body: Column(
           children: [
-             Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(Icons.access_time_rounded, color: Colors.white, size: 40,),
-                          SizedBox(width: 10),
-                          Text(
-                            'At what time?',
-                            style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.w600
-                          ),),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 28),
             Padding(
-              padding: const EdgeInsets.only( top:12 , bottom: 16, left: 16, right: 16),
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.access_time_rounded,
+                    color: Colors.white,
+                    size: 40,
+                  ),
+                  SizedBox(width: 10),
+                  Text(
+                    'At what time?'.tr(),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 30,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 28),
+            Padding(
+              padding: const EdgeInsets.only(
+                top: 12,
+                bottom: 16,
+                left: 16,
+                right: 16,
+              ),
               child: SizedBox(
                 height: 430,
                 child: Column(
                   children: [
                     Expanded(
                       child: GridView.builder(
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 3,
-                          mainAxisSpacing: 10,
-                          crossAxisSpacing: 10,
-                          childAspectRatio: 2.5,
-                        ),
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 3,
+                              mainAxisSpacing: 10,
+                              crossAxisSpacing: 10,
+                              childAspectRatio: 2.5,
+                            ),
                         itemCount: availableTimes.length,
                         itemBuilder: (context, index) {
                           final time = availableTimes[index];
                           final isPast = _isPastTime(time);
                           final isSelected = selectedTime == time;
-                
+
                           return GestureDetector(
                             onTap: isPast ? null : () => _onSelectTime(time),
                             child: Container(
@@ -155,10 +170,18 @@ class _SelectTimeScreenState extends State<SelectTimeScreen> {
                                         ? AppColors.secondAppColor
                                         : isPast
                                         ? Colors.grey.shade700
-                                        : const Color.fromARGB(255, 196, 71, 33).withOpacity(0.7),
+                                        : const Color.fromARGB(
+                                          255,
+                                          196,
+                                          71,
+                                          33,
+                                        ).withOpacity(0.7),
                                 borderRadius: BorderRadius.circular(10),
                                 border: Border.all(
-                                  color: isSelected ? Colors.white : Colors.transparent,
+                                  color:
+                                      isSelected
+                                          ? Colors.white
+                                          : Colors.transparent,
                                   width: 1.5,
                                 ),
                               ),
@@ -166,10 +189,15 @@ class _SelectTimeScreenState extends State<SelectTimeScreen> {
                               child: Text(
                                 DateFormat('HH:mm').format(time),
                                 style: TextStyle(
-                                  color: isPast ? Colors.grey.shade400 : Colors.white,
+                                  color:
+                                      isPast
+                                          ? Colors.grey.shade400
+                                          : Colors.white,
                                   fontSize: 20,
                                   fontWeight:
-                                      isSelected ? FontWeight.bold : FontWeight.normal,
+                                      isSelected
+                                          ? FontWeight.bold
+                                          : FontWeight.normal,
                                 ),
                               ),
                             ),
@@ -177,7 +205,7 @@ class _SelectTimeScreenState extends State<SelectTimeScreen> {
                         },
                       ),
                     ),
-                    
+
                     const SizedBox(height: 30),
                     ElevatedButton.icon(
                       onPressed: _confirmReservation,
@@ -188,10 +216,18 @@ class _SelectTimeScreenState extends State<SelectTimeScreen> {
                           borderRadius: BorderRadius.circular(12),
                         ),
                       ),
-                      icon: const Icon(Icons.access_time_outlined, color: Colors.white, size: 25,),
-                      label: const Text(
-                        'Confirm Time',
-                        style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.w500),
+                      icon: const Icon(
+                        Icons.access_time_outlined,
+                        color: Colors.white,
+                        size: 25,
+                      ),
+                      label: Text(
+                        'Confirm Time'.tr(),
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                     ),
                   ],

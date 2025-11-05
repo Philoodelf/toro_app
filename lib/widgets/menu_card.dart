@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:toro_app/const/colors.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MenuCard extends StatelessWidget {
@@ -23,13 +24,24 @@ class MenuCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 250,
-      width: 404,
+      height: 330,
+      width: 340,
       child: Stack(
         children: [
-          Image.asset(
-            imagePath,
-            fit: BoxFit.scaleDown,
+          ClipRRect(
+            borderRadius: BorderRadius.circular(16),
+            child: Image.asset(
+              imagePath,
+              fit: BoxFit.cover,
+              width: double.infinity,
+              height: double.infinity,
+            ),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              color: Colors.black.withOpacity(0.4), // adjust opacity
+            ),
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -74,7 +86,11 @@ class MenuCard extends StatelessWidget {
                     'Download $title',
                     style: const TextStyle(
                       decoration: TextDecoration.underline,
-                      fontSize: 18,
+                      decorationColor: AppColors.secondAppColor,
+                      decorationStyle: TextDecorationStyle.solid,
+                      fontSize: 22,
+                      color: AppColors.secondAppColor,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),

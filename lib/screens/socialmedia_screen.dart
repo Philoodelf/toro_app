@@ -102,7 +102,7 @@ class SocialMediaScreen extends StatelessWidget {
             Center(
               child: SizedBox(
                 width: MediaQuery.of(context).size.width * 0.8,
-                child: Divider(color: Colors.white, thickness: 1.5),
+                child: Divider(color: AppColors.secondAppColor, thickness: 1.5),
               ),
             ),
 

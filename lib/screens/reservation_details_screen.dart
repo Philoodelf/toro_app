@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:toro_app/const/colors.dart';
 import 'package:toro_app/widgets/button_nav.dart';
@@ -79,7 +80,7 @@ class _ReservationDetailsScreenState extends State<ReservationDetailsScreen> {
           child: Column(
             children: [
               Text(
-                'Reservation Details',
+                'Reservation Details'.tr(),
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 26,
@@ -116,20 +117,20 @@ class _ReservationDetailsScreenState extends State<ReservationDetailsScreen> {
                         //  const SizedBox(height: 20),
                         _buildDetailRow(
                           icon: Icons.people,
-                          label: 'Guests:',
+                          label: 'Guests:'.tr(),
                           value: '${widget.selectedGuests}',
                         ),
                         const SizedBox(height: 12),
                         _buildDetailRow(
                           icon: Icons.calendar_month_outlined,
-                          label: 'Date:',
+                          label: 'Date:'.tr(),
                           value:
                               '${widget.selectedDate.day}-${widget.selectedDate.month}-${widget.selectedDate.year}',
                         ),
                         const SizedBox(height: 12),
                         _buildDetailRow(
                           icon: Icons.access_time,
-                          label: 'Time:',
+                          label: 'Time:'.tr(),
                           value:
                               '${widget.selectedTime.hour.toString().padLeft(2, '0')}:${widget.selectedTime.minute.toString().padLeft(2, '0')}',
                         ),
@@ -148,7 +149,7 @@ class _ReservationDetailsScreenState extends State<ReservationDetailsScreen> {
               ),
               SizedBox(height: 18),
               Text(
-                'Please Enter your info',
+                'Please Enter your info'.tr(),
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 26,
@@ -170,11 +171,11 @@ class _ReservationDetailsScreenState extends State<ReservationDetailsScreen> {
       child: Column(
         //crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildRadioOption('Mr.'),
-          _buildRadioOption('Ms.'),
-          _buildRadioOption('Mx.'),
-          _buildRadioOption('Other', hasDropdown: true),
-          if (_selectedOption == 'Other')
+          _buildRadioOption('Mr.'.tr()),
+          _buildRadioOption('Ms.'.tr()),
+          _buildRadioOption('Mx.'.tr()),
+          _buildRadioOption('Other'.tr(), hasDropdown: true),
+          if (_selectedOption == 'Other'.tr())
             Padding(
               padding: const EdgeInsets.only(left: 10, top: 12, right: 12),
               child: DropdownButtonFormField<String>(
@@ -231,7 +232,7 @@ class _ReservationDetailsScreenState extends State<ReservationDetailsScreen> {
       onChanged: (val) {
         setState(() {
           _selectedOption = val;
-          if (val != 'Other') _selectedDropdownValue = null;
+          if (val != 'Other'.tr()) _selectedDropdownValue = null;
         });
       },
       contentPadding: const EdgeInsets.symmetric(horizontal: 8, vertical: -4),

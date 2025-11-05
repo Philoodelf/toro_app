@@ -79,7 +79,7 @@ class _PartyScreenState extends State<PartyScreen> {
                   padding: const EdgeInsets.all(12),
                   child: Stack(
                     children: [
-                      Image.asset('assets/images/party.jpg', fit: BoxFit.cover),
+                      Image.asset('assets/images/partyimg.jpg', fit: BoxFit.cover),
                       AnimatedPositioned(
                         duration: Duration(seconds: 2),
                         curve: Curves.bounceIn,

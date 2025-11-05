@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:toro_app/const/colors.dart';
@@ -25,34 +26,34 @@ class _CustomTextfieldState extends State<CustomTextfield> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             _buildLabeledField(
-              label: 'First Name *',
+              label: 'First Name *'.tr(),
               controller: _firstNameController,
               validator:
                   (value) =>
-                      value!.isEmpty ? 'Please enter your first name' : null,
+                      value!.isEmpty ? 'Please enter your first name'.tr() : null,
             ),
             const SizedBox(height: 12),
             _buildLabeledField(
-              label: 'Last Name *',
+              label: 'Last Name *'.tr(),
               controller: _lastNameController,
               validator:
                   (value) =>
-                      value!.isEmpty ? 'Please enter your last name' : null,
+                      value!.isEmpty ? 'Please enter your last name'.tr() : null,
             ),
             const SizedBox(height: 12),
             _buildLabeledField(
-              label: 'Email *',
+              label: 'Email *'.tr(),
               controller: _emailController,
               keyboardType: TextInputType.emailAddress,
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return 'Please enter your email';
+                  return 'Please enter your email'.tr();
                 }
 
                 // Basic email validation using RegExp
                 final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
                 if (!emailRegex.hasMatch(value)) {
-                  return 'Please enter a valid email address';
+                  return 'Please enter a valid email address'.tr();
                 }
 
                 return null; // ✅ valid email
@@ -86,15 +87,15 @@ class _CustomTextfieldState extends State<CustomTextfield> {
 
                 if (isValid) {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('Form submitted successfully'),
+                     SnackBar(
+                      content: Text('Form submitted successfully'.tr()),
                     ),
                   );
                   print('iiiiiiiiiiiiiiiiiiiiiiiiiiiiii');
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('Please Enter your data'),
+                     SnackBar(
+                      content: Text('Please Enter your data'.tr()),
                     ),
                   );
                 }
@@ -107,8 +108,8 @@ class _CustomTextfieldState extends State<CustomTextfield> {
                 //   print('iiiiiiiiiiiiiiiiiiiiiiiiiiiiii');
                 // }
               },
-              child: const Text(
-                'Next',
+              child:  Text(
+                'Next'.tr(),
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
               ),
             ),
@@ -123,10 +124,10 @@ class _CustomTextfieldState extends State<CustomTextfield> {
       validator: (value) {
         // You can also check controller value if needed
         if (_phoneController.text.isEmpty) {
-          return 'Please enter your phone number';
+          return 'Please enter your phone number'.tr();
         }
         if (_phoneController.text.length < 6) {
-          return 'Invalid phone number';
+          return 'Invalid phone number'.tr();
         }
         return null;
       },
@@ -140,7 +141,7 @@ class _CustomTextfieldState extends State<CustomTextfield> {
               decoration: InputDecoration(
                 filled: true,
                 fillColor: AppColors.secondAppColor.withOpacity(0.2),
-                labelText: 'Phone Number *',
+                labelText: 'Phone Number *'.tr(),
                 labelStyle: const TextStyle(
                   color: AppColors.secondAppColor,
                   fontSize: 18,

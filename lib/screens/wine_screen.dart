@@ -3,16 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:toro_app/const/colors.dart';
 import 'package:toro_app/widgets/menu_card.dart';
 
-class MenuScreen extends StatefulWidget {
-  const MenuScreen({super.key});
+class WineScreen extends StatefulWidget {
+  const WineScreen({super.key});
 
   @override
-  State<MenuScreen> createState() => _MenuScreenState();
+  State<WineScreen> createState() => _WineScreenState();
 }
 
-class _MenuScreenState extends State<MenuScreen> {
-  //
-
+class _WineScreenState extends State<WineScreen> {
   bool showText = false;
   bool visible = false;
   bool appear = false;
@@ -65,7 +63,7 @@ class _MenuScreenState extends State<MenuScreen> {
                 size: 35,
               ),
               onPressed: () {
-                 if (animationsFinished) {
+                if (animationsFinished) {
                   Navigator.pop(context); 
                 }
               },
@@ -81,15 +79,18 @@ class _MenuScreenState extends State<MenuScreen> {
                   padding: const EdgeInsets.all(12),
                   child: Stack(
                     children: [
-                      Image.asset('assets/images/menu.jpg', fit: BoxFit.cover),
+                      Image.asset(
+                        'assets/images/partyimg.jpg',
+                        fit: BoxFit.cover,
+                      ),
                       AnimatedPositioned(
                         duration: Duration(milliseconds: 1500),
                         curve: Curves.bounceIn,
                         left: 10,
                         right: 20,
-                        bottom: showText ? 130 : -70,
+                        bottom: showText ? 160 : -70,
                         child: Text(
-                          'menutitle'.tr(),
+                          'winetitle'.tr(),
                           textAlign: TextAlign.start,
                           style: const TextStyle(
                             color: Colors.white,
@@ -124,7 +125,7 @@ class _MenuScreenState extends State<MenuScreen> {
                         child: Padding(
                           padding: EdgeInsets.all(8.0),
                           child: Text(
-                            'menusubtitle'.tr(),
+                            'winesubtitle'.tr(),
                             textAlign: TextAlign.start,
                             style: TextStyle(
                               fontSize: 20,
@@ -166,32 +167,28 @@ class _MenuScreenState extends State<MenuScreen> {
                                 ),
                               ),
                             ),
-                            SizedBox(height: 18),
+                          //  SizedBox(height: 8),
+
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                'textrecommendation'.tr(),
+                                textAlign: TextAlign.start,
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 20),
 
                             Column(
                               children: [
                                 recommendationItem(
-                                  title: 'menurecommendation1'.tr(),
-                                  price: '€31,50',
-                                  description: 'menurecommendation1des'.tr(),
-                                ),
-                                SizedBox(
-                                  width: 360,
-                                  child: Divider(
-                                    color: const Color.fromARGB(
-                                      255,
-                                      164,
-                                      121,
-                                      59,
-                                    ),
-                                    thickness: 1,
-                                  ),
-                                ),
-                                const SizedBox(height: 20),
-                                recommendationItem(
-                                  title: 'menurecommendation2'.tr(),
+                                  title: 'winerecommendation1'.tr(),
                                   price: '€34,50',
-                                  description: 'menurecommendation2des'.tr(),
+                                  description: 'winerecommendation1des'.tr(),
                                 ),
                                 SizedBox(
                                   width: 360,
@@ -207,9 +204,9 @@ class _MenuScreenState extends State<MenuScreen> {
                                 ),
                                 const SizedBox(height: 20),
                                 recommendationItem(
-                                  title: 'menurecommendation3'.tr(),
-                                  price: '€32,50',
-                                  description: 'menurecommendation3des'.tr(),
+                                  title: 'winerecommendation2'.tr(),
+                                  price: '€34,50',
+                                  description: 'winerecommendation2des'.tr(),
                                 ),
                                 SizedBox(
                                   width: 360,
@@ -225,9 +222,9 @@ class _MenuScreenState extends State<MenuScreen> {
                                 ),
                                 const SizedBox(height: 20),
                                 recommendationItem(
-                                  title: 'menurecommendation4'.tr(),
-                                  price: '€39,50',
-                                  description: 'menurecommendation4des'.tr(),
+                                  title: 'winerecommendation3'.tr(),
+                                  price: '€34,50',
+                                  description: 'winerecommendation3des'.tr(),
                                 ),
                                 SizedBox(
                                   width: 360,
@@ -243,10 +240,28 @@ class _MenuScreenState extends State<MenuScreen> {
                                 ),
                                 const SizedBox(height: 20),
                                 recommendationItem(
-                                  title: 'menurecommendation5'.tr(),
-                                  price: '€35,50',
-                                  description: 'menurecommendation5des'.tr(),
+                                  title: 'winerecommendation4'.tr(),
+                                  price: '€45,50',
+                                  description: 'winerecommendation4des'.tr(),
                                 ),
+                                // SizedBox(
+                                //   width: 360,
+                                //   child: Divider(
+                                //     color: const Color.fromARGB(
+                                //       255,
+                                //       164,
+                                //       121,
+                                //       59,
+                                //     ),
+                                //     thickness: 1,
+                                //   ),
+                                // ),
+                                const SizedBox(height: 20),
+                                // recommendationItem(
+                                //   title: 'menurecommendation5'.tr(),
+                                //   price: '€35.50',
+                                //   description: 'menurecommendation5des'.tr(),
+                                // ),
                               ],
                             ),
                             Center(
@@ -262,7 +277,7 @@ class _MenuScreenState extends State<MenuScreen> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                'downloadtext'.tr(),
+                                'downloadtextwine'.tr(),
                                 style: TextStyle(
                                   fontSize: 30,
                                   fontWeight: FontWeight.w700,
@@ -271,40 +286,41 @@ class _MenuScreenState extends State<MenuScreen> {
                               ),
                             ),
                             SizedBox(height: 18),
-                            //?*! Menu
-                            SingleChildScrollView(
-                              scrollDirection: Axis.horizontal,
-                              child: Row(
-                                children: [
-                                  //? first menu
-                                  MenuCard(
-                                    imagePath: 'assets/images/lunch.jpg',
-                                    title: 'lunchtitle'.tr(),
-                                    description: 'lunchmenu'.tr(),
+                            //?*! wine
+                            Row(
+                              children: [
+                                //? first menu
+                                SizedBox(
+                                  height: 400,
+                                  width: MediaQuery.of(context).size.width * 0.93,
+                                  child: MenuCard(
+                                    imagePath: 'assets/images/us.jpg',
+                                    title: 'downloadwinelist'.tr(),
+                                    description: 'winelist'.tr(),
                                     pdfUrl:
-                                        'https://restaurant-toro.nl/nieuw/wp-content/uploads/2019/08/DIG-C-Toro-Menukaart-Map-Lunchdiner-V5.pdf',
+                                        'https://restaurant-toro.nl/nieuw/wp-content/uploads/2024/01/salentijn-wijnkaart-Binnen-2024.pdf',
                                   ),
-                                  SizedBox(width: 10),
-
-                                  //? second menu
-                                  MenuCard(
-                                    imagePath: 'assets/images/drinks.jpg',
-                                    title: 'drinkstitle'.tr(),
-                                    description: 'drinksmenu'.tr(),
-                                    pdfUrl:
-                                        'https://restaurant-toro.nl/nieuw/wp-content/uploads/2019/08/DIG-C-V4-Drankenborrelhapjes-kaart.pdf',
-                                  ),
-                                  SizedBox(width: 10),
-                                  //? third menu
-                                  MenuCard(
-                                    imagePath: 'assets/images/dessert.jpg',
-                                    title: 'desserttitle'.tr(),
-                                    description: 'dessertmenu'.tr(),
-                                    pdfUrl:
-                                        'https://restaurant-toro.nl/nieuw/wp-content/uploads/2019/08/DIG-C-V4-Menukaart-dessert-.pdf',
-                                  ),
-                                ],
-                              ),
+                                ),
+                                SizedBox(width: 10),
+                            
+                                //? second menu
+                                // MenuCard(
+                                //   imagePath: 'assets/images/drinks.jpg',
+                                //   title: 'drinkstitle'.tr(),
+                                //   description: 'drinksmenu'.tr(),
+                                //   pdfUrl:
+                                //       'https://restaurant-toro.nl/nieuw/wp-content/uploads/2019/08/DIG-C-V4-Drankenborrelhapjes-kaart.pdf',
+                                // ),
+                                // SizedBox(width: 10),
+                                // //? third menu
+                                // MenuCard(
+                                //   imagePath: 'assets/images/dessert.jpg',
+                                //   title: 'desserttitle'.tr(),
+                                //   description: 'dessertmenu'.tr(),
+                                //   pdfUrl:
+                                //       'https://restaurant-toro.nl/nieuw/wp-content/uploads/2019/08/DIG-C-V4-Menukaart-dessert-.pdf',
+                                // ),
+                              ],
                             ),
                             SizedBox(height: 12),
                           ],

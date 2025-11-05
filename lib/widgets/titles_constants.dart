@@ -1,36 +1,38 @@
+import 'package:easy_localization/easy_localization.dart';
+
 class TitlesConstants {
-  static const List<String> dropdownItems = [
+  static final List<String> dropdownItems = [
     // Couples
-    'Mr. and Mrs',
+    'Mr. and Mrs'.tr(),
 
     // Academic & Professional Titles
-    'Doctor',
-    'Professor',
-    'Magister',
-    'Counsel',
-    'Chef',
+    'Doctor'.tr(),
+    'Professor'.tr(),
+    'Magister'.tr(),
+    'Counsel'.tr(),
+    'Chef'.tr(),
 
     // Diplomatic & Government Titles
-    'Ambassador',
-    'Madam Ambassador',
-    'President',
-    'Madam President',
+    'Ambassador'.tr(),
+    'Madam Ambassador'.tr(),
+    'President'.tr(),
+    'Madam President'.tr(),
 
     // Nobility Titles
-    'Prince',
-    'Princess',
-    'Duke',
-    'Duchess',
-    'Count',
-    'Countess',
-    'Baron',
-    'Baroness',
-    'Lord',
-    'Lady',
-    'Sir',
-    'His/Her Royal Highness',
+    'Prince'.tr(),
+    'Princess'.tr(),
+    'Duke'.tr(),
+    'Duchess'.tr(),
+    'Count'.tr(),
+    'Countess'.tr(),
+    'Baron'.tr(),
+    'Baroness'.tr(),
+    'Lord'.tr(),
+    'Lady'.tr(),
+    'Sir'.tr(),
+    'His/Her Royal Highness'.tr(),
 
     // Corporate
-    'Company',
+    'Company'.tr(),
   ];
 }

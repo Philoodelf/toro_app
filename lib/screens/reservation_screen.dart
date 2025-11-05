@@ -1,9 +1,17 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:toro_app/const/colors.dart';
 import 'package:toro_app/screens/date_select_screen.dart';
 import 'package:toro_app/screens/reservation_details_screen.dart';
 import 'package:toro_app/widgets/button_nav.dart';
+
+
+
+
+//! restaurant’s UUID 
+//! offerUuid 
+//! dol hathom 34an required w ht4t8l m3ak fe postman
 
 class ReservationScreen extends StatefulWidget {
   const ReservationScreen({super.key});
@@ -53,7 +61,7 @@ class _ReservationScreenState extends State<ReservationScreen> {
               Center(
                 child: Text(
                   textAlign: TextAlign.center,
-                  'Book quickly and easily',
+                  'booktitle'.tr(),
                   style: TextStyle(
                     fontSize: 40,
                     fontWeight: FontWeight.bold,
@@ -63,7 +71,7 @@ class _ReservationScreenState extends State<ReservationScreen> {
               ),
               Center(
                 child: Text(
-                  'Make your reservation below for a pleasant afternoon or evening in our restaurant.',
+                  'reservationtitle'.tr(),
                   style: TextStyle(color: Colors.white, fontSize: 18),
                   textAlign: TextAlign.center,
                 ),
@@ -96,7 +104,7 @@ class _ReservationScreenState extends State<ReservationScreen> {
                               size: 30,
                             ),
                             label: Text(
-                              'Persons',
+                              'persontext'.tr(),
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 20,
@@ -135,7 +143,7 @@ class _ReservationScreenState extends State<ReservationScreen> {
                               size: 30,
                             ),
                             label: Text(
-                              'Date',
+                              'datetext'.tr(),
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 20,
@@ -170,7 +178,7 @@ class _ReservationScreenState extends State<ReservationScreen> {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 12.0),
                   child: Text(
-                    'Selected: ${_selectedDate != null ? '${_selectedDate!.day}-${_selectedDate!.month}-${_selectedDate!.year}' : ''} at ${_selectedTime != null ? '${_selectedTime!.hour.toString().padLeft(2, '0')}:${_selectedTime!.minute.toString().padLeft(2, '0')}' : ''}',
+                    '${'selectedtext'.tr()}: ${_selectedDate != null ? '${_selectedDate!.day}-${_selectedDate!.month}-${_selectedDate!.year}' : ''} ${'at'.tr()} ${_selectedTime != null ? '${_selectedTime!.hour.toString().padLeft(2, '0')}:${_selectedTime!.minute.toString().padLeft(2, '0')}' : ''}',
                     style: const TextStyle(color: Colors.white, fontSize: 18),
                     textAlign: TextAlign.center,
                   ),
@@ -188,7 +196,7 @@ class _ReservationScreenState extends State<ReservationScreen> {
                           Icon(FontAwesomeIcons.users, color: Colors.white),
                           SizedBox(width: 18),
                           Text(
-                            'How many guests?',
+                            'guestsno'.tr(),
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 20,
@@ -280,7 +288,7 @@ class _ReservationScreenState extends State<ReservationScreen> {
 
               SizedBox(height: 12),
               SizedBox(
-                height: 50,
+                height: 60,
                 width: 370,
                 child: OutlinedButton.icon(
                   style: ButtonStyle(
@@ -293,11 +301,7 @@ class _ReservationScreenState extends State<ReservationScreen> {
                         _selectedDate == null ||
                         _selectedTime == null) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text(
-                            'Please select number of guests, date, and time first!',
-                          ),
-                        ),
+                        SnackBar(content: Text('snackbardate').tr()),
                       );
                     } else {
                       //? Continue to next step (e.g., send reservation to API)
@@ -318,12 +322,12 @@ class _ReservationScreenState extends State<ReservationScreen> {
                   },
                   icon: Icon(Icons.search_sharp, color: Colors.white, size: 30),
                   label: Text(
-                    'FIND A TABLE',
+                    'findtable'.tr(),
                     style: TextStyle(color: Colors.white, fontSize: 20),
                   ),
                 ),
               ),
-              SizedBox(height: 15,),
+              SizedBox(height: 25),
             ],
           ),
         ),

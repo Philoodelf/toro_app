@@ -68,8 +68,9 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                     children: [
                       SizedBox(
                         height: 260,
+                        width: 400,
                         child: Image.asset(
-                          'assets/images/about_us.jpg',
+                          'assets/images/us.jpg',
                           fit: BoxFit.cover,
                         ),
                       ),
