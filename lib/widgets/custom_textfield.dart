@@ -1,10 +1,23 @@
+import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:toro_app/const/colors.dart';
 
 class CustomTextfield extends StatefulWidget {
-  const CustomTextfield({super.key});
+  final int selectedGuests;
+  final DateTime selectedDate;
+  final TimeOfDay selectedTime;
+  final String? selectedTitle;
+  final String? selectedDropdownValue;
+  const CustomTextfield({
+    super.key,
+    required this.selectedGuests,
+    required this.selectedDate,
+    required this.selectedTime,
+    this.selectedTitle,
+    this.selectedDropdownValue,
+  });
 
   @override
   State<CustomTextfield> createState() => _CustomTextfieldState();
@@ -30,7 +43,9 @@ class _CustomTextfieldState extends State<CustomTextfield> {
               controller: _firstNameController,
               validator:
                   (value) =>
-                      value!.isEmpty ? 'Please enter your first name'.tr() : null,
+                      value!.isEmpty
+                          ? 'Please enter your first name'.tr()
+                          : null,
             ),
             const SizedBox(height: 12),
             _buildLabeledField(
@@ -38,7 +53,9 @@ class _CustomTextfieldState extends State<CustomTextfield> {
               controller: _lastNameController,
               validator:
                   (value) =>
-                      value!.isEmpty ? 'Please enter your last name'.tr() : null,
+                      value!.isEmpty
+                          ? 'Please enter your last name'.tr()
+                          : null,
             ),
             const SizedBox(height: 12),
             _buildLabeledField(
@@ -63,13 +80,6 @@ class _CustomTextfieldState extends State<CustomTextfield> {
             //? intl phone field
             _buildPhoneField(),
 
-            // _buildLabeledField(
-            //   label: 'Phone Number *',
-            //   controller: _phoneController,
-            //   keyboardType: TextInputType.phone,
-            //   validator:
-            //       (value) => value!.isEmpty ? 'Please enter your Number' : null,
-            // ),
             const SizedBox(height: 20),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
@@ -82,35 +92,84 @@ class _CustomTextfieldState extends State<CustomTextfield> {
                   borderRadius: BorderRadius.circular(16),
                 ),
               ),
-              onPressed: () {
+
+              onPressed: () async {
                 final isValid = _formKey.currentState?.validate() ?? false;
 
                 if (isValid) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                     SnackBar(
-                      content: Text('Form submitted successfully'.tr()),
+                  final dio = Dio(
+                    BaseOptions(
+                      connectTimeout: Duration(seconds: 30),
+                      receiveTimeout: Duration(seconds: 20),
+                      followRedirects: true,
+                      maxRedirects: 5,
+                      validateStatus: (s) => s != null && s < 500,
                     ),
                   );
-                  print('iiiiiiiiiiiiiiiiiiiiiiiiiiiiii');
+
+                  // Replace with your actual backend URL (e.g. your server IP)
+                  const apiUrl =
+                      'https://flutter-mail-backend-production.up.railway.app/api/email';
+
+                  final reservationData = {
+                    "firstName": _firstNameController.text,
+                    "lastName": _lastNameController.text,
+                    "receiverEmail": _emailController.text,
+                    "phone": _phoneController.text,
+                    "guests": widget.selectedGuests.toString(),
+                    "date":
+                        "${widget.selectedDate.day}-${widget.selectedDate.month}-${widget.selectedDate.year}",
+                    "time":
+                        "${widget.selectedTime.hour.toString().padLeft(2, '0')}:${widget.selectedTime.minute.toString().padLeft(2, '0')}",
+                    "title":
+                        widget.selectedTitle == 'Other'.tr()
+                            ? widget.selectedDropdownValue.toString() ?? ""
+                            : widget.selectedTitle.toString(),
+                  };
+
+                  try {
+                    final response = await dio.post(
+                      apiUrl,
+
+                      data: reservationData,
+                      options: Options(
+                        headers: {'Content-Type': 'application/json'},
+                      ),
+                    );
+                    print('Status code: ${response.statusCode}');
+                    print('Response data: ${response.data}');
+
+                    if (response.data['success'] == true) {
+                      _showSuccessDialog(context, reservationData);
+                    } else {
+                      final errorMsg =
+                          response.data['error'] ??
+                          'Failed to send reservation email.';
+                      _showErrorDialog(context, errorMsg);
+                    }
+                  } catch (e) {
+                    print('Error sending email: $e');
+
+                    _showErrorDialog(
+                      context,
+                      'Something went wrong, please try again.',
+                    );
+                  }
                 } else {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                     SnackBar(
-                      content: Text('Please Enter your data'.tr()),
-                    ),
+                  _showErrorDialog(
+                    context,
+                    'Please fill in all required fields.',
                   );
                 }
-                // if (_formKey.currentState!.validate()) {
-                //   ScaffoldMessenger.of(context).showSnackBar(
-                //     const SnackBar(
-                //       content: Text('Form submitted successfully'),
-                //     ),
-                //   );
-                //   print('iiiiiiiiiiiiiiiiiiiiiiiiiiiiii');
-                // }
               },
-              child:  Text(
-                'Next'.tr(),
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+
+              child: Text(
+                'Confirm'.tr(),
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
               ),
             ),
           ],
@@ -246,6 +305,161 @@ class _CustomTextfieldState extends State<CustomTextfield> {
         ),
         cursorColor: AppColors.secondAppColor,
       ),
+    );
+  }
+}
+
+void _showSuccessDialog(
+  BuildContext context,
+  Map<String, dynamic> reservationData,
+) {
+  showDialog(
+    context: context,
+    barrierDismissible: false,
+    builder: (ctx) {
+      return AlertDialog(
+        backgroundColor: Colors.white,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        title: Row(
+          children: [
+            //  Icon(Icons.check_circle, color: Colors.green, size: 25),
+            // const SizedBox(width: 5),
+            Text(
+              'Reservation Confirmed',
+              style: TextStyle(
+                color: Colors.green,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Your reservation has been sent successfully 🎉',
+              style: TextStyle(color: Colors.black87),
+            ),
+            const SizedBox(height: 12),
+            Text(
+              'Date: ${reservationData["date"]}\n'
+              'Time: ${reservationData["time"]}\n'
+              'Guests: ${reservationData["guests"]}',
+              style: TextStyle(color: Colors.black54),
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(ctx).pop(); // just close dialog
+            },
+            child: Text('Close', style: TextStyle(color: Colors.green)),
+          ),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.red,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+            ),
+            onPressed: () async {
+              Navigator.of(ctx).pop(); // close dialog first
+
+              // OPTIONAL: show a small loader or snackbar here if you want
+
+              await _sendCancellationEmail(context, reservationData);
+            },
+            child: const Text(
+              'Cancel reservation',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        ],
+      );
+    },
+  );
+}
+
+void _showErrorDialog(BuildContext context, String message) {
+  showDialog(
+    context: context,
+    barrierDismissible: false,
+    builder: (ctx) {
+      return AlertDialog(
+        backgroundColor: Colors.white,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        title: Row(
+          children: [
+            Icon(Icons.error, color: Colors.red, size: 28),
+            const SizedBox(width: 8),
+            Text(
+              'Reservation Failed',
+              style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
+        content: Text(message, style: const TextStyle(color: Colors.black87)),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(ctx).pop();
+            },
+            child: const Text('OK', style: TextStyle(color: Colors.red)),
+          ),
+        ],
+      );
+    },
+  );
+}
+
+Future<void> _sendCancellationEmail(
+  BuildContext context,
+  Map<String, dynamic> reservationData,
+) async {
+  final dio = Dio(
+    BaseOptions(
+      connectTimeout: Duration(seconds: 30),
+      receiveTimeout: Duration(seconds: 20),
+      followRedirects: true,
+      maxRedirects: 5,
+      validateStatus: (s) => s != null && s < 500,
+    ),
+  );
+
+  const apiUrl =
+      'https://flutter-mail-backend-production.up.railway.app/api/email/cancel';
+
+  // Clone and mark as cancellation (adjust to what your backend expects)
+  final cancelData = {
+    ...reservationData,
+    "type": "cancel", // let the server know this is a cancellation
+  };
+
+  try {
+    final response = await dio.post(
+      apiUrl,
+      data: cancelData,
+      options: Options(headers: {'Content-Type': 'application/json'}),
+    );
+
+    print('Cancel Status code: ${response.statusCode}');
+    print('Cancel Response data: ${response.data}');
+
+    if (response.data['success'] == true) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Cancellation email sent successfully!')),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Failed to send cancellation email.')),
+      );
+    }
+  } catch (e) {
+    print('Error sending cancellation email: $e');
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Something went wrong, please try again.')),
     );
   }
 }

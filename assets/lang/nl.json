@@ -75,12 +75,12 @@
     "at": "om",
     "guestsno": "Hoeveel gasten?",
     "snackbardate": "Selecteer eerst het aantal gasten, de datum en de tijd!",
-    "Date saved for": "Datum opgeslagen voor",
+    "Date saved for": "Datum opgeslagen voor {}",
     "Please select a date first!": "Selecteer eerst een datum!",
     "For what day?": "Voor welke dag?",
     "Confirm Date": "Bevestig datum",
     "Please select a time first!": "Selecteer eerst een tijd!",
-    "Reservation saved at": "Reservering opgeslagen om",
+    "Reservation saved at": "Reservering opgeslagen om {}",
     "At what time?": "Hoe laat?",
     "Confirm Time": "Bevestig tijd",
     "Reservation Details": "Reserveringsgegevens",
@@ -124,8 +124,9 @@
     "Please enter a valid email address": "Vul een geldig e-mailadres in",
     "Form submitted successfully": "Formulier succesvol verzonden",
     "Please Enter your data": "Vul uw gegevens in",
-    "Next": "Volgende",
+    "Confirm": "Bevestigen",
     "Please enter your phone number": "Vul uw telefoonnummer in",
     "Invalid phone number": "Ongeldig telefoonnummer",
-    "Phone Number *": "Telefoonnummer *"
+    "Phone Number *": "Telefoonnummer *",
+    "copied":"Gekopieerd"
 }

@@ -75,12 +75,12 @@
     "at": "at",
     "guestsno": "How many guests?",
     "snackbardate": "Please select number of guests, date, and time first!",
-    "Date saved for": "Date saved for",
+    "Date saved for": "Date saved for {}",
     "Please select a date first!": "Please select a date first!",
     "For what day?": "For what day?",
     "Confirm Date": "Confirm Date",
     "Please select a time first!": "Please select a time first!",
-    "Reservation saved at": "Reservation saved at",
+    "Reservation saved at": "Reservation saved at {}",
     "At what time?": "At what time?",
     "Confirm Time": "Confirm Time",
     "Reservation Details": "Reservation Details",
@@ -124,8 +124,9 @@
     "Please enter a valid email address": "Please enter a valid email address",
     "Form submitted successfully": "Form submitted successfully",
     "Please Enter your data": "Please Enter your data",
-    "Next": "Next",
+    "Confirm": "Confirm",
     "Please enter your phone number": "Please enter your phone number",
     "Invalid phone number": "Invalid phone number",
-    "Phone Number *": "Phone Number *"
+    "Phone Number *": "Phone Number *",
+    "copied": "Copied"
 }

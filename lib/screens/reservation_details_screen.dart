@@ -157,7 +157,12 @@ class _ReservationDetailsScreenState extends State<ReservationDetailsScreen> {
                 ),
               ),
               SizedBox(height: 20),
-              CustomTextfield(),
+              CustomTextfield(
+                selectedGuests: widget.selectedGuests,
+                selectedDate: widget.selectedDate,
+                selectedTime: TimeOfDay.fromDateTime(widget.selectedTime),
+                selectedTitle: _selectedOption,
+              ),
             ],
           ),
         ),

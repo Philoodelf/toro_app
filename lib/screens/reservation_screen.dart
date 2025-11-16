@@ -6,11 +6,8 @@ import 'package:toro_app/screens/date_select_screen.dart';
 import 'package:toro_app/screens/reservation_details_screen.dart';
 import 'package:toro_app/widgets/button_nav.dart';
 
-
-
-
-//! restaurant’s UUID 
-//! offerUuid 
+//! restaurant’s UUID
+//! offerUuid
 //! dol hathom 34an required w ht4t8l m3ak fe postman
 
 class ReservationScreen extends StatefulWidget {
@@ -183,6 +180,11 @@ class _ReservationScreenState extends State<ReservationScreen> {
                     textAlign: TextAlign.center,
                   ),
                 ),
+              Text(
+                'findtable'.tr(),
+                style: const TextStyle(color: Colors.white, fontSize: 18),
+                textAlign: TextAlign.center,
+              ),
 
               Visibility(
                 visible: showPersonsGrid,

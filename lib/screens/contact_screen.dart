@@ -61,7 +61,8 @@ class _ContactScreenState extends State<ContactScreen> {
     Clipboard.setData(ClipboardData(text: text)).then((_) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Copied: $text'),
+          content: Text(tr('copied', args: [text])),
+          //Text('copied: $text'),
           duration: Duration(seconds: 2),
         ),
       );
@@ -114,10 +115,11 @@ class _ContactScreenState extends State<ContactScreen> {
                             'assets/images/contact.png',
                             fit: BoxFit.cover,
                             width: double.infinity,
+                            height: 300,
                             // height: double.infinity,
                           ),
                           SizedBox(
-                            height: 220,
+                            height: 250,
                             child: Container(
                               decoration: BoxDecoration(
                                 //  borderRadius: BorderRadius.circular(16),

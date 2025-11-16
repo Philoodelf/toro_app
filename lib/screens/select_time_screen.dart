@@ -74,10 +74,11 @@ class _SelectTimeScreenState extends State<SelectTimeScreen> {
     debugPrint('Reservation confirmed for: $formatted');
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        backgroundColor: AppColors.secondAppColor,
-        //! translation here too
+        backgroundColor: AppColors.mainAppColor,
+       
         content: Text(
-          'Reservation saved at $formatted'.tr(),
+          tr('Reservation saved at', args: [formatted]),
+          //'Reservation saved at $formatted'.tr(),
           style: const TextStyle(color: Colors.white),
         ),
       ),

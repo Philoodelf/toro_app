@@ -74,12 +74,12 @@
   "at": "um",
   "guestsno": "Wie viele Gäste?",
   "snackbardate": "Bitte wählen Sie zuerst die Anzahl der Gäste, das Datum und die Uhrzeit aus!",
-  "Date saved for": "Datum gespeichert für",
+  "Date saved for": "Datum gespeichert für {}",
   "Please select a date first!": "Bitte wählen Sie zuerst ein Datum aus!",
   "For what day?": "Für welchen Tag?",
   "Confirm Date": "Datum bestätigen",
   "Please select a time first!": "Bitte wähle zuerst eine Uhrzeit aus!",
-  "Reservation saved at": "Reservierung gespeichert um",
+  "Reservation saved at": "Reservierung gespeichert um {}",
   "At what time?": "Um wie viel Uhr?",
   "Confirm Time": "Uhrzeit bestätigen",
   "Reservation Details": "Reservierungsdetails",
@@ -123,8 +123,9 @@
   "Please enter a valid email address": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
   "Form submitted successfully": "Formular erfolgreich gesendet",
   "Please Enter your data": "Bitte geben Sie Ihre Daten ein",
-  "Next": "Weiter",
+  "Confirm": "Bestätigen",
   "Please enter your phone number": "Bitte geben Sie Ihre Telefonnummer ein",
   "Invalid phone number": "Ungültige Telefonnummer",
-  "Phone Number *": "Telefonnummer *"
+  "Phone Number *": "Telefonnummer *",
+  "copied":"Kopiert"
 }

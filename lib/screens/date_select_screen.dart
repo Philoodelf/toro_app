@@ -50,10 +50,11 @@ class _DateSelectState extends State<SelectDateScreen> {
       debugPrint('Reservation saved for date: $formattedDate');
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          backgroundColor: AppColors.secondAppColor,
-          //! fix translation here 
+          backgroundColor: AppColors.mainAppColor,
+          
           content: Text(
-            'Date saved for $formattedDate'.tr(),
+            tr('Date saved for', args: [formattedDate]),
+            //'Date saved for $formattedDate'.tr(),
             style: const TextStyle(color: Colors.white),
           ),
         ),
@@ -70,13 +71,7 @@ class _DateSelectState extends State<SelectDateScreen> {
         Navigator.pop(context, {'date': _selectedDay!, 'time': selectedTime});
       }
 
-      // Navigator.of(context).push(
-      //                   MaterialPageRoute(
-      //                     builder: (context) => SelectTimeScreen(
-      //                       selectedDate: _selectedDay!,
-      //                     ),
-      //                   ),
-      //                 );
+     
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(

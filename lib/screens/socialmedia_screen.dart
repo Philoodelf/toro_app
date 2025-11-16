@@ -16,7 +16,8 @@ class SocialMediaScreen extends StatelessWidget {
     Clipboard.setData(ClipboardData(text: text)).then((_) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Copied: $text'),
+          content: Text(tr('copied', args: [text])),
+          //Text('Copied: $text'),
           duration: Duration(seconds: 2),
         ),
       );
