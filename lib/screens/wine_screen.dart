@@ -64,7 +64,7 @@ class _WineScreenState extends State<WineScreen> {
               ),
               onPressed: () {
                 if (animationsFinished) {
-                  Navigator.pop(context); 
+                  Navigator.pop(context);
                 }
               },
             ),
@@ -77,36 +77,79 @@ class _WineScreenState extends State<WineScreen> {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(12),
-                  child: Stack(
-                    children: [
-                      Image.asset(
-                        'assets/images/partyimg.jpg',
-                        fit: BoxFit.cover,
-                      ),
-                      AnimatedPositioned(
-                        duration: Duration(milliseconds: 1500),
-                        curve: Curves.bounceIn,
-                        left: 10,
-                        right: 20,
-                        bottom: showText ? 160 : -70,
-                        child: Text(
-                          'winetitle'.tr(),
-                          textAlign: TextAlign.start,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold,
-                            shadows: [
-                              Shadow(
-                                offset: Offset(2, 2),
-                                blurRadius: 6,
-                                color: Colors.black54,
+                  child: AspectRatio(
+                    aspectRatio:  16 / 9,
+                    child: Stack(
+                      clipBehavior: Clip.hardEdge,
+                      children: [
+                        Image.asset(
+                          'assets/images/partyimg.jpg',
+                          fit: BoxFit.cover,
+                          width: double.infinity,
+                        ),
+                        Positioned.fill(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 12),
+                            child: ClipRect(
+                              child: AnimatedAlign(
+                                duration: const Duration(milliseconds: 1700),
+                                curve: Curves.bounceInOut,
+                                alignment:
+                                    showText
+                                        ? const AlignmentDirectional(0, -0.95)
+                                        : const AlignmentDirectional(0, 1.6),
+                                child: AnimatedOpacity(
+                                  duration: const Duration(milliseconds: 300),
+                                  opacity: showText ? 1 : 0,
+                                  child: ConstrainedBox(
+                                    constraints: const BoxConstraints(
+                                      maxHeight: 160,
+                                    ),
+                                    child: Builder(
+                                      builder: (context) {
+                                        
+                                        final scale = MediaQuery.textScalerOf(
+                                          context,
+                                        ).scale(1);
+                    
+                                        // لو اليوزر مكبّر قوي، ثبّت الخط عندك
+                                        final fixedScale =
+                                            scale > 1.1 ? 1.0 : scale;
+                    
+                                        return MediaQuery(
+                                          data: MediaQuery.of(context).copyWith(
+                                            textScaler: TextScaler.linear(
+                                              fixedScale,
+                                            ),
+                                          ),
+                                          child: Text(
+                                            'winetitle'.tr(),
+                                            softWrap: true,
+                                            textAlign: TextAlign.start,
+                                            style: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 25,
+                                              fontWeight: FontWeight.bold,
+                                              shadows: [
+                                                Shadow(
+                                                  offset: Offset(2, 2),
+                                                  blurRadius: 6,
+                                                  color: Colors.black54,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                ),
                               ),
-                            ],
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
                 Column(
@@ -167,8 +210,8 @@ class _WineScreenState extends State<WineScreen> {
                                 ),
                               ),
                             ),
-                          //  SizedBox(height: 8),
 
+                            //  SizedBox(height: 8),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
@@ -291,8 +334,9 @@ class _WineScreenState extends State<WineScreen> {
                               children: [
                                 //? first menu
                                 SizedBox(
-                                  height: 400,
-                                  width: MediaQuery.of(context).size.width * 0.93,
+                                  height: 360,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.91,
                                   child: MenuCard(
                                     imagePath: 'assets/images/us.jpg',
                                     title: 'downloadwinelist'.tr(),
@@ -302,7 +346,7 @@ class _WineScreenState extends State<WineScreen> {
                                   ),
                                 ),
                                 SizedBox(width: 10),
-                            
+
                                 //? second menu
                                 // MenuCard(
                                 //   imagePath: 'assets/images/drinks.jpg',

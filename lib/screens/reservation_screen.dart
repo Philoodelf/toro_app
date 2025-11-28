@@ -85,8 +85,10 @@ class _ReservationScreenState extends State<ReservationScreen> {
                   ),
                   child: Column(
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                      Wrap(
+                        alignment: WrapAlignment.center,
+                        spacing: 12,
+                        runSpacing: 8,
                         children: [
                           //! person
                           TextButton.icon(
@@ -172,19 +174,26 @@ class _ReservationScreenState extends State<ReservationScreen> {
               ),
               SizedBox(height: 5),
               if (_selectedDate != null && _selectedTime != null)
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 12.0),
-                  child: Text(
-                    '${'selectedtext'.tr()}: ${_selectedDate != null ? '${_selectedDate!.day}-${_selectedDate!.month}-${_selectedDate!.year}' : ''} ${'at'.tr()} ${_selectedTime != null ? '${_selectedTime!.hour.toString().padLeft(2, '0')}:${_selectedTime!.minute.toString().padLeft(2, '0')}' : ''}',
-                    style: const TextStyle(color: Colors.white, fontSize: 18),
-                    textAlign: TextAlign.center,
-                  ),
+                Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 12.0),
+                      child: Text(
+                        '${'selectedtext'.tr()}: ${_selectedDate != null ? '${_selectedDate!.day}-${_selectedDate!.month}-${_selectedDate!.year}' : ''} ${'at'.tr()} ${_selectedTime != null ? '${_selectedTime!.hour.toString().padLeft(2, '0')}:${_selectedTime!.minute.toString().padLeft(2, '0')}' : ''}',
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    Text(
+                      'findtable'.tr(),
+                      style: const TextStyle(color: Colors.white, fontSize: 18),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
                 ),
-              Text(
-                'findtable'.tr(),
-                style: const TextStyle(color: Colors.white, fontSize: 18),
-                textAlign: TextAlign.center,
-              ),
 
               Visibility(
                 visible: showPersonsGrid,

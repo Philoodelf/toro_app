@@ -29,6 +29,8 @@ class _CustomTextfieldState extends State<CustomTextfield> {
   final TextEditingController _lastNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _otherTitleController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -121,10 +123,17 @@ class _CustomTextfieldState extends State<CustomTextfield> {
                         "${widget.selectedDate.day}-${widget.selectedDate.month}-${widget.selectedDate.year}",
                     "time":
                         "${widget.selectedTime.hour.toString().padLeft(2, '0')}:${widget.selectedTime.minute.toString().padLeft(2, '0')}",
+                    // "title":
+                    //     widget.selectedTitle == 'Other'.tr()
+                    //  ? widget.selectedDropdownValue.toString() ?? ""
+                    //  : widget.selectedTitle.toString(),
                     "title":
-                        widget.selectedTitle == 'Other'.tr()
-                            ? widget.selectedDropdownValue.toString() ?? ""
-                            : widget.selectedTitle.toString(),
+                        (widget.selectedDropdownValue != null &&
+                                widget.selectedDropdownValue!.trim().isNotEmpty)
+                            ? widget.selectedDropdownValue!
+                                .trim() // use dropdown if filled
+                            : (widget.selectedTitle ?? '')
+                                .trim(), // otherwise use radio title
                   };
 
                   try {
@@ -320,7 +329,7 @@ void _showSuccessDialog(
       return AlertDialog(
         backgroundColor: Colors.white,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        title: Row(
+        title: Wrap(
           children: [
             //  Icon(Icons.check_circle, color: Colors.green, size: 25),
             // const SizedBox(width: 5),

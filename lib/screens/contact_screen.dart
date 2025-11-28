@@ -104,8 +104,8 @@ class _ContactScreenState extends State<ContactScreen> {
                     height: 250,
                     child: GestureDetector(
                       onTap: () async {
-                        const url =
-                            'https://www.google.com/maps/search/?api=1&query=Groenmarkt+37+7201+HW+Zutphen';
+                        const url = 'https://shorturl.at/cCbAG';
+                        
                         debugPrint('Trying to open: $url');
                         await _launchURL(url);
                       },
@@ -129,26 +129,56 @@ class _ContactScreenState extends State<ContactScreen> {
                               ),
                             ),
                           ),
-                          AnimatedPositioned(
-                            duration: Duration(seconds: 2),
-                            curve: Curves.bounceIn,
-                            left: 10,
-                            right: 20,
-                            bottom: showText ? 160 : -70,
-                            child: Text(
-                              'contacttitle'.tr(),
-                              textAlign: TextAlign.start,
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 25,
-                                fontWeight: FontWeight.bold,
-                                shadows: [
-                                  Shadow(
-                                    offset: Offset(2, 2),
-                                    blurRadius: 6,
-                                    color: Colors.black54,
+                          Positioned.fill(
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 12,
+                              ),
+                              child: ClipRect(
+                                child: AnimatedAlign(
+                                  duration: const Duration(milliseconds: 1700),
+                                  curve: Curves.bounceInOut,
+                                  alignment:
+                                      showText
+                                          ? const AlignmentDirectional(
+                                            -1,
+                                            -0.95,
+                                          ) // top inside the image
+                                          : const AlignmentDirectional(
+                                            -1,
+                                            1.6,
+                                          ), // fully below (hidden)
+                                  child: AnimatedOpacity(
+                                    duration: const Duration(milliseconds: 300),
+                                    opacity:
+                                        showText
+                                            ? 1
+                                            : 0, // invisible before entering
+                                    child: ConstrainedBox(
+                                      constraints: const BoxConstraints(
+                                        maxHeight:
+                                            160, // allows wrapping + keeps it inside
+                                      ),
+                                      child: Text(
+                                        'contacttitle'.tr(),
+                                        softWrap: true,
+                                        textAlign: TextAlign.start,
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 25,
+                                          fontWeight: FontWeight.bold,
+                                          shadows: [
+                                            Shadow(
+                                              offset: Offset(2, 2),
+                                              blurRadius: 6,
+                                              color: Colors.black54,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
                                   ),
-                                ],
+                                ),
                               ),
                             ),
                           ),
@@ -256,24 +286,23 @@ class _ContactScreenState extends State<ContactScreen> {
                   child: Divider(color: AppColors.secondAppColor, thickness: 1),
                 ),
                 //? contact info
-                Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Column(
-                    children: [
-                      //? location
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Icon(
-                            Icons.location_on_outlined,
-                            color: AppColors.secondAppColor,
-                            size: 35,
-                          ),
-                          SizedBox(height: 12),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Padding(
+                Column(
+                  children: [
+                    //? location
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(
+                          Icons.location_on_outlined,
+                          color: AppColors.secondAppColor,
+                          size: 35,
+                        ),
+                        SizedBox(height: 12),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              child: Padding(
                                 padding: const EdgeInsets.only(left: 12),
                                 child: Text(
                                   addressText,
@@ -282,100 +311,101 @@ class _ContactScreenState extends State<ContactScreen> {
                                     fontWeight: FontWeight.w500,
                                     color: Colors.white,
                                   ),
+                                  softWrap: true,
                                 ),
                               ),
-                              IconButton(
-                                icon: const Icon(
-                                  Icons.copy,
+                            ),
+                            IconButton(
+                              icon: const Icon(
+                                Icons.copy,
+                                color: Colors.white,
+                                size: 34,
+                              ),
+                              onPressed: () => copyText(context, addressText),
+                              tooltip: 'Copy Address',
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 16),
+                    //? phone
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(
+                          Icons.phone,
+                          color: AppColors.secondAppColor,
+                          size: 35,
+                        ),
+                        SizedBox(height: 12),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 12),
+                              child: Text(
+                                noText,
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w500,
                                   color: Colors.white,
-                                  size: 34,
-                                ),
-                                onPressed: () => copyText(context, addressText),
-                                tooltip: 'Copy Address',
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 16),
-                      //? phone
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Icon(
-                            Icons.phone,
-                            color: AppColors.secondAppColor,
-                            size: 35,
-                          ),
-                          SizedBox(height: 12),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 12),
-                                child: Text(
-                                  noText,
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w500,
-                                    color: Colors.white,
-                                  ),
                                 ),
                               ),
-                              IconButton(
-                                icon: const Icon(
-                                  Icons.copy,
+                            ),
+                            IconButton(
+                              icon: const Icon(
+                                Icons.copy,
+                                color: Colors.white,
+                                size: 34,
+                              ),
+                              onPressed: () => copyText(context, noText),
+                              tooltip: 'Copy Phone',
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 16),
+                    //? email
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(
+                          Icons.email,
+                          color: AppColors.secondAppColor,
+                          size: 35,
+                        ),
+                        SizedBox(height: 12),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 12),
+                              child: Text(
+                                emailText,
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w500,
                                   color: Colors.white,
-                                  size: 34,
-                                ),
-                                onPressed: () => copyText(context, noText),
-                                tooltip: 'Copy Phone',
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 16),
-                      //? email
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Icon(
-                            Icons.email,
-                            color: AppColors.secondAppColor,
-                            size: 35,
-                          ),
-                          SizedBox(height: 12),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 12),
-                                child: Text(
-                                  emailText,
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w500,
-                                    color: Colors.white,
-                                  ),
                                 ),
                               ),
-                              IconButton(
-                                icon: const Icon(
-                                  Icons.copy,
-                                  color: Colors.white,
-                                  size: 34,
-                                ),
-                                onPressed: () => copyText(context, emailText),
-                                tooltip: 'Copy Email',
+                            ),
+                            IconButton(
+                              icon: const Icon(
+                                Icons.copy,
+                                color: Colors.white,
+                                size: 34,
                               ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      SizedBox(width: 12),
-                    ],
-                  ),
+                              onPressed: () => copyText(context, emailText),
+                              tooltip: 'Copy Email',
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    SizedBox(width: 12),
+                  ],
                 ),
               ],
             ),

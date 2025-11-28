@@ -20,66 +20,64 @@ class SettingsScreen extends StatelessWidget {
         body: Column(
           children: [
             Image.asset(AppColors.logo),
-            Container(
+            Expanded(
               child: Center(
-                child: SizedBox(
-                  height: 260,
-                  child: SingleChildScrollView(
-                    child: Column(
-                      spacing: 12,
-                      children: [
-                        CostumeMenu(
-                          label: 'translation'.tr(),
-                          onTap: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => TranslationScreen(),
-                              ),
-                            );
-                          },
-                        ),
-                        CostumeMenu(
-                          label: 'party'.tr(),
-                          onTap: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => PartyScreen(),
-                              ),
-                            );
-                          },
-                        ),
-                        CostumeMenu(
-                          label: 'catering'.tr(),
-                          onTap: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => CateringScreen(),
-                              ),
-                            );
-                          },
-                        ),
-                        CostumeMenu(
-                          label: 'contact'.tr(),
-                          onTap: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => ContactScreen(),
-                              ),
-                            );
-                          },
-                        ),
-                        CostumeMenu(
-                          label: 'aboutus'.tr(),
-                          onTap: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => AboutUsScreen(),
-                              ),
-                            );
-                          },
-                        ),
-                      ],
-                    ),
+                child: SingleChildScrollView(
+                  child: Column(
+                    spacing: 12,
+                    children: [
+                      CostumeMenu(
+                        label: 'translation'.tr(),
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => TranslationScreen(),
+                            ),
+                          );
+                        },
+                      ),
+                      CostumeMenu(
+                        label: 'party'.tr(),
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => PartyScreen(),
+                            ),
+                          );
+                        },
+                      ),
+                      CostumeMenu(
+                        label: 'catering'.tr(),
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => CateringScreen(),
+                            ),
+                          );
+                        },
+                      ),
+                      CostumeMenu(
+                        label: 'contact'.tr(),
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => ContactScreen(),
+                            ),
+                          );
+                        },
+                      ),
+                      CostumeMenu(
+                        label: 'aboutus'.tr(),
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => AboutUsScreen(),
+                            ),
+                          );
+                        },
+                      ),
+                      SizedBox(height: 25,)
+                    ],
                   ),
                 ),
               ),

@@ -21,11 +21,57 @@ class MenuCard extends StatelessWidget {
     }
   }
 
+  void _showFullDescription(BuildContext context) {
+    showModalBottomSheet(
+      isScrollControlled: true, 
+      context: context,
+      backgroundColor: Colors.black87,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+      ),
+      builder: (ctx) {
+        return Padding(
+          padding: const EdgeInsets.fromLTRB(20, 16, 20, 24),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                title,
+                style: const TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+              const SizedBox(height: 12),
+              Text(
+                description,
+                style: const TextStyle(fontSize: 16, color: Colors.white70),
+              ),
+              const SizedBox(height: 16),
+              Align(
+                alignment: Alignment.centerRight,
+                child: TextButton(
+                  onPressed: () => Navigator.of(ctx).pop(),
+                  child: const Text(
+                    'Close',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 330,
-      width: 340,
+      height: 340,
+      width: 360,
       child: Stack(
         children: [
           ClipRRect(
@@ -43,15 +89,17 @@ class MenuCard extends StatelessWidget {
               color: Colors.black.withOpacity(0.4), // adjust opacity
             ),
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 25, left: 25),
-                child: Text(
+          Padding(
+            padding: const EdgeInsets.fromLTRB(20, 20, 20, 16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
                   title,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                    fontSize: 30,
+                    fontSize: 26,
                     fontWeight: FontWeight.bold,
                     fontStyle: FontStyle.italic,
                     color: Colors.grey.shade100,
@@ -65,37 +113,55 @@ class MenuCard extends StatelessWidget {
                     ],
                   ),
                 ),
-              ),
-              const SizedBox(height: 20),
-              Padding(
-                padding: const EdgeInsets.only(left: 24, right: 20),
-                child: Text(
-                  description,
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 20),
-                child: TextButton(
-                  onPressed: () => _launchURL(pdfUrl),
+                const SizedBox(height: 20),
+                Expanded(
                   child: Text(
-                    'Download $title',
+                    description,
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
-                      decoration: TextDecoration.underline,
-                      decorationColor: AppColors.secondAppColor,
-                      decorationStyle: TextDecorationStyle.solid,
-                      fontSize: 22,
-                      color: AppColors.secondAppColor,
+                      fontSize: 18,
                       fontWeight: FontWeight.bold,
+                      color: Colors.white,
                     ),
                   ),
                 ),
-              ),
-            ],
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: TextButton(
+                    onPressed: () => _showFullDescription(context),
+                    child: const Text(
+                      'Read more',
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.white,
+                        decoration: TextDecoration.underline,
+                      ),
+                    ),
+                  ),
+                ),
+
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: TextButton(
+                    onPressed: () => _launchURL(pdfUrl),
+                    child: Text(
+                      'Download $title',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        decoration: TextDecoration.underline,
+                        decorationColor: AppColors.secondAppColor,
+                        decorationStyle: TextDecorationStyle.solid,
+                        fontSize: 20,
+                        color: AppColors.secondAppColor,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),

@@ -65,8 +65,8 @@ class _MenuScreenState extends State<MenuScreen> {
                 size: 35,
               ),
               onPressed: () {
-                 if (animationsFinished) {
-                  Navigator.pop(context); 
+                if (animationsFinished) {
+                  Navigator.pop(context);
                 }
               },
             ),
@@ -81,27 +81,56 @@ class _MenuScreenState extends State<MenuScreen> {
                   padding: const EdgeInsets.all(12),
                   child: Stack(
                     children: [
-                      Image.asset('assets/images/menu.jpg', fit: BoxFit.cover),
-                      AnimatedPositioned(
-                        duration: Duration(milliseconds: 1500),
-                        curve: Curves.bounceIn,
-                        left: 10,
-                        right: 20,
-                        bottom: showText ? 130 : -70,
-                        child: Text(
-                          'menutitle'.tr(),
-                          textAlign: TextAlign.start,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold,
-                            shadows: [
-                              Shadow(
-                                offset: Offset(2, 2),
-                                blurRadius: 6,
-                                color: Colors.black54,
+                      Image.asset(
+                        'assets/images/menu.jpg',
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                      ),
+                      Positioned.fill(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12),
+                          child: ClipRect(
+                            child: AnimatedAlign(
+                              duration: const Duration(milliseconds: 1700),
+                              curve: Curves.bounceInOut,
+                              alignment:
+                                  showText
+                                      ? const AlignmentDirectional(
+                                        0,
+                                        -0.95,
+                                      ) 
+                                      : const AlignmentDirectional(
+                                        0,
+                                        1.6,
+                                      ), 
+                              child: AnimatedOpacity(
+                                duration: const Duration(milliseconds: 300),
+                                opacity: showText ? 1 : 0,
+                                child: ConstrainedBox(
+                                  constraints: const BoxConstraints(
+                                    maxHeight:
+                                        160, 
+                                  ),
+                                  child: Text(
+                                    'menutitle'.tr(),
+                                    softWrap: true,
+                                    textAlign: TextAlign.start,
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 25,
+                                      fontWeight: FontWeight.bold,
+                                      shadows: [
+                                        Shadow(
+                                          offset: Offset(2, 2),
+                                          blurRadius: 6,
+                                          color: Colors.black54,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
                               ),
-                            ],
+                            ),
                           ),
                         ),
                       ),
@@ -271,39 +300,60 @@ class _MenuScreenState extends State<MenuScreen> {
                               ),
                             ),
                             SizedBox(height: 18),
-                            //?*! Menu
-                            SingleChildScrollView(
-                              scrollDirection: Axis.horizontal,
-                              child: Row(
-                                children: [
-                                  //? first menu
-                                  MenuCard(
-                                    imagePath: 'assets/images/lunch.jpg',
-                                    title: 'lunchtitle'.tr(),
-                                    description: 'lunchmenu'.tr(),
-                                    pdfUrl:
-                                        'https://restaurant-toro.nl/nieuw/wp-content/uploads/2019/08/DIG-C-Toro-Menukaart-Map-Lunchdiner-V5.pdf',
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Text(
+                                  "Swipe for more ".tr(),
+                                  style: TextStyle(
+                                    color: Colors.white60,
+                                    fontSize: 14,
                                   ),
-                                  SizedBox(width: 10),
+                                ),
+                                Icon(
+                                  Icons.arrow_forward_ios,
+                                  size: 14,
+                                  color: Colors.white60,
+                                ),
+                              ],
+                            ),
 
-                                  //? second menu
-                                  MenuCard(
-                                    imagePath: 'assets/images/drinks.jpg',
-                                    title: 'drinkstitle'.tr(),
-                                    description: 'drinksmenu'.tr(),
-                                    pdfUrl:
-                                        'https://restaurant-toro.nl/nieuw/wp-content/uploads/2019/08/DIG-C-V4-Drankenborrelhapjes-kaart.pdf',
-                                  ),
-                                  SizedBox(width: 10),
-                                  //? third menu
-                                  MenuCard(
-                                    imagePath: 'assets/images/dessert.jpg',
-                                    title: 'desserttitle'.tr(),
-                                    description: 'dessertmenu'.tr(),
-                                    pdfUrl:
-                                        'https://restaurant-toro.nl/nieuw/wp-content/uploads/2019/08/DIG-C-V4-Menukaart-dessert-.pdf',
-                                  ),
-                                ],
+                            const SizedBox(height: 8),
+                            //?*! Menu
+                            Scrollbar(
+                              child: SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child: Row(
+                                  children: [
+                                    //? first menu
+                                    MenuCard(
+                                      imagePath: 'assets/images/lunch.jpg',
+                                      title: 'lunchtitle'.tr(),
+                                      description: 'lunchmenu'.tr(),
+                                      pdfUrl:
+                                          'https://restaurant-toro.nl/nieuw/wp-content/uploads/2019/08/DIG-C-Toro-Menukaart-Map-Lunchdiner-V5.pdf',
+                                    ),
+                                    SizedBox(width: 10),
+
+                                    //? second menu
+                                    MenuCard(
+                                      imagePath: 'assets/images/drinks.jpg',
+                                      title: 'drinkstitle'.tr(),
+                                      description: 'drinksmenu'.tr(),
+                                      pdfUrl:
+                                          'https://restaurant-toro.nl/nieuw/wp-content/uploads/2019/08/DIG-C-V4-Drankenborrelhapjes-kaart.pdf',
+                                    ),
+                                    SizedBox(width: 10),
+                                    //? third menu
+                                    MenuCard(
+                                      imagePath: 'assets/images/dessert.jpg',
+                                      title: 'desserttitle'.tr(),
+                                      description: 'dessertmenu'.tr(),
+                                      pdfUrl:
+                                          'https://restaurant-toro.nl/nieuw/wp-content/uploads/2019/08/DIG-C-V4-Menukaart-dessert-.pdf',
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                             SizedBox(height: 12),

@@ -40,7 +40,7 @@ class _CateringScreenState extends State<CateringScreen> {
     Future.delayed(Duration(seconds: 2), () {
       setState(() {
         appear = true;
-        animationsFinished=true;
+        animationsFinished = true;
       });
     });
   }
@@ -63,7 +63,7 @@ class _CateringScreenState extends State<CateringScreen> {
               ),
               onPressed: () {
                 if (animationsFinished) {
-                  Navigator.pop(context); 
+                  Navigator.pop(context);
                 }
               },
             ),
@@ -81,27 +81,56 @@ class _CateringScreenState extends State<CateringScreen> {
                       Image.asset(
                         'assets/images/catering.jpg',
                         fit: BoxFit.cover,
+                        width: double.infinity,
                       ),
-                      AnimatedPositioned(
-                        duration: Duration(seconds: 2),
-                        curve: Curves.bounceIn,
-                        left: 10,
-                        right: 20,
-                        bottom: showText ? 160 : -70,
-                        child: Text(
-                          'cateringtitle'.tr(),
-                          textAlign: TextAlign.start,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold,
-                            shadows: [
-                              Shadow(
-                                offset: Offset(2, 2),
-                                blurRadius: 6,
-                                color: Colors.black54,
+                      Positioned.fill(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12),
+                          child: ClipRect(
+                            child: AnimatedAlign(
+                              duration: const Duration(milliseconds: 1700),
+                              curve: Curves.bounceInOut,
+                              alignment:
+                                  showText
+                                      ? const AlignmentDirectional(
+                                        0,
+                                        -0.95,
+                                      ) 
+                                      : const AlignmentDirectional(
+                                        0,
+                                        1.6,
+                                      ), 
+                              child: AnimatedOpacity(
+                                duration: const Duration(milliseconds: 300),
+                                opacity:
+                                    showText
+                                        ? 1
+                                        : 0, 
+                                child: ConstrainedBox(
+                                  constraints: const BoxConstraints(
+                                    maxHeight:
+                                        160, 
+                                  ),
+                                  child: Text(
+                                    'cateringtitle'.tr(),
+                                    softWrap: true,
+                                    textAlign: TextAlign.start,
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 25,
+                                      fontWeight: FontWeight.bold,
+                                      shadows: [
+                                        Shadow(
+                                          offset: Offset(2, 2),
+                                          blurRadius: 6,
+                                          color: Colors.black54,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
                               ),
-                            ],
+                            ),
                           ),
                         ),
                       ),
@@ -155,7 +184,7 @@ class _CateringScreenState extends State<CateringScreen> {
                         curve: Curves.easeOut,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children:  [
+                          children: [
                             Padding(
                               padding: EdgeInsets.all(8.0),
                               child: Text(

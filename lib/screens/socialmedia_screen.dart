@@ -53,157 +53,160 @@ class SocialMediaScreen extends StatelessWidget {
             ),
           ),
         ),
-        body: Column(
-          children: [
-            Image.asset(AppColors.logo, height: 300, ),
-
-         
-            Center(
-              child: SizedBox(
-                width: MediaQuery.of(context).size.width * 0.8,
-                child: Divider(color: Colors.white, thickness: 1.5),
-              ),
-            ),
-
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.8,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Icon(Icons.location_on, color: Colors.white, size: 47),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'address'.tr(),
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.w800,
-                        ),
-                      ),
-                      Text(
-                        addressText,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ],
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.copy, color: Colors.white, size: 34),
-                    onPressed: () => copyText(context, addressText),
-                    tooltip: 'Copy Address',
-                  ),
-                ],
-              ),
-            ),
-
-            Center(
-              child: SizedBox(
-                width: MediaQuery.of(context).size.width * 0.8,
-                child: Divider(color: AppColors.secondAppColor, thickness: 1.5),
-              ),
-            ),
-
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.8,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Icon(Icons.phone, color: Colors.white, size: 40),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 100),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'number'.tr(),
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.w800,
-                          ),
-                        ),
-                        Text(
-                          noText,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.copy, color: Colors.white, size: 34),
-                    onPressed: () => copyText(context, noText),
-                    tooltip: 'Copy Number',
-                  ),
-                ],
-              ),
-            ),
-
-            Center(
-              child: SizedBox(
-                width: MediaQuery.of(context).size.width * 0.8,
-                child: Divider(color: Colors.white, thickness: 1.5),
-              ),
-            ),
-
-            SizedBox(height: 25),
-
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SocialMedia(
-                  icon: Icons.language,
-                  text: 'website'.tr(),
-                  color: const Color.fromARGB(255, 15, 11, 11),
-                  onTap: () {
-                    _launchURL("https://restaurant-toro.nl/");
-                  },
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Image.asset(AppColors.logo, height: 300, ),
+                
+           
+              Center(
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  child: Divider(color: Colors.white, thickness: 1.5),
                 ),
-
-                const SizedBox(height: 12),
-                Padding(
-                  padding: const EdgeInsets.only(right: 5),
-                  child: SocialMedia(
-                    icon: Icons.facebook,
-                    text: 'facebook'.tr(),
-                    color: const Color(0xff1877F2),
+              ),
+                
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.8,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Icon(Icons.location_on, color: Colors.white, size: 47),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'address'.tr(),
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                          Text(
+                            addressText,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    IconButton(
+                      icon: const Icon(Icons.copy, color: Colors.white, size: 34),
+                      onPressed: () => copyText(context, addressText),
+                      tooltip: 'Copy Address',
+                    ),
+                  ],
+                ),
+              ),
+                
+              Center(
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  child: Divider(color: AppColors.secondAppColor, thickness: 1.5),
+                ),
+              ),
+                
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.8,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Icon(Icons.phone, color: Colors.white, size: 40),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'number'.tr(),
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                          Text(
+                            noText,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    IconButton(
+                      icon: const Icon(Icons.copy, color: Colors.white, size: 34),
+                      onPressed: () => copyText(context, noText),
+                      tooltip: 'Copy Number',
+                    ),
+                  ],
+                ),
+              ),
+                
+              Center(
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  child: Divider(color: Colors.white, thickness: 1.5),
+                ),
+              ),
+                
+              SizedBox(height: 25),
+                
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SocialMedia(
+                    icon: Icons.language,
+                    text: 'website'.tr(),
+                    color: const Color.fromARGB(255, 15, 11, 11),
                     onTap: () {
-                      _launchURL(
-                        "https://www.facebook.com/restauranttorozutphen/",
-                      );
+                      _launchURL("https://restaurant-toro.nl/");
                     },
                   ),
-                ),
-                const SizedBox(height: 12),
-
-                SocialMedia(
-                  icon:
-                      FontAwesomeIcons
-                          .instagram, // if using font_awesome_flutter
-                  text: 'Instagram'.tr(),
-                  gradient: const LinearGradient(
-                    begin: Alignment.bottomLeft,
-                    end: Alignment.topRight,
-                    colors: [
-                      Color(0xFF833AB4), // Purple
-                      Color(0xFFFD1D1D), // Red
-                      Color(0xFFFCB045), // Orange
-                    ],
+                
+                  const SizedBox(height: 12),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 5),
+                    child: SocialMedia(
+                      icon: Icons.facebook,
+                      text: 'facebook'.tr(),
+                      color: const Color(0xff1877F2),
+                      onTap: () {
+                        _launchURL(
+                          "https://www.facebook.com/restauranttorozutphen/",
+                        );
+                      },
+                    ),
                   ),
-                  onTap: () {
-                    _launchURL("https://www.instagram.com/restaurant_toro/");
-                  },
-                ),
-              ],
-            ),
-            
-          ],
+                  const SizedBox(height: 12),
+                
+                  SocialMedia(
+                    icon:
+                        FontAwesomeIcons
+                            .instagram, // if using font_awesome_flutter
+                    text: 'Instagram'.tr(),
+                    gradient: const LinearGradient(
+                      begin: Alignment.bottomLeft,
+                      end: Alignment.topRight,
+                      colors: [
+                        Color(0xFF833AB4), // Purple
+                        Color(0xFFFD1D1D), // Red
+                        Color(0xFFFCB045), // Orange
+                      ],
+                    ),
+                    onTap: () {
+                      _launchURL("https://www.instagram.com/restaurant_toro/");
+                    },
+                  ),
+                ],
+              ),
+              
+            ],
+          ),
         ),
       ),
     );

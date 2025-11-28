@@ -19,59 +19,57 @@ class HomeScreen extends StatelessWidget {
         body: Column(
           children: [
             Image.asset(AppColors.logo),
-            Container(
-              child: SizedBox(
-                height: 260,
-                child: SingleChildScrollView(
-                  child: Column(
-                    spacing: 12,
-                    children: [
-                      CostumeMenu(
-                        label: 'menu'.tr(),
-                        icon: Icons.menu_book_rounded,
-                        onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => const MenuScreen(),
-                            ),
-                          );
-                        },
-                      ),
-                      CostumeMenu(
-                        label: 'wine'.tr(),
-                        icon: Icons.wine_bar_outlined,
-                        onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => const WineScreen(),
-                            ),
-                          );
-                        },
-                      ),
-                      CostumeMenu(
-                        label: 'reservation'.tr(),
-                        icon: Icons.calendar_month_outlined,
-                        onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => const ReservationScreen(),
-                            ),
-                          );
-                        },
-                      ),
-                      CostumeMenu(
-                        label: 'socialmedia'.tr(),
-                        icon: Icons.numbers,
-                        onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => const SocialMediaScreen(),
-                            ),
-                          );
-                        },
-                      ),
-                    ],
-                  ),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  spacing: 12,
+                  children: [
+                    CostumeMenu(
+                      label: 'menu'.tr(),
+                      icon: Icons.menu_book_rounded,
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const MenuScreen(),
+                          ),
+                        );
+                      },
+                    ),
+                    CostumeMenu(
+                      label: 'wine'.tr(),
+                      icon: Icons.wine_bar_outlined,
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const WineScreen(),
+                          ),
+                        );
+                      },
+                    ),
+                    CostumeMenu(
+                      label: 'reservation'.tr(),
+                      icon: Icons.calendar_month_outlined,
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const ReservationScreen(),
+                          ),
+                        );
+                      },
+                    ),
+                    CostumeMenu(
+                      label: 'socialmedia'.tr(),
+                      icon: Icons.numbers,
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const SocialMediaScreen(),
+                          ),
+                        );
+                      },
+                    ),
+                    SizedBox(height: 25,)
+                  ],
                 ),
               ),
             ),

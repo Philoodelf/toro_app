@@ -38,7 +38,7 @@ class TranslationScreen extends StatelessWidget {
                 backgroundColor: WidgetStatePropertyAll<Color>(
                   AppColors.secondAppColor,
                 ),
-                fixedSize: WidgetStatePropertyAll<Size>(Size(215, 50)),
+                fixedSize: WidgetStatePropertyAll<Size>(Size(244, 50)),
               ),
               onPressed: () {
                 context.setLocale(const Locale('nl'));
@@ -58,7 +58,7 @@ class TranslationScreen extends StatelessWidget {
                 backgroundColor: WidgetStatePropertyAll<Color>(
                   AppColors.secondAppColor,
                 ),
-                fixedSize: WidgetStatePropertyAll<Size>(Size(215, 50)),
+                fixedSize: WidgetStatePropertyAll<Size>(Size(244, 50)),
               ),
               onPressed: () {
                 context.setLocale(const Locale('de'));
@@ -77,7 +77,7 @@ class TranslationScreen extends StatelessWidget {
                 backgroundColor: WidgetStatePropertyAll<Color>(
                   AppColors.secondAppColor,
                 ),
-                fixedSize: WidgetStatePropertyAll<Size>(Size(215, 50)),
+                fixedSize: WidgetStatePropertyAll<Size>(Size(244, 50)),
               ),
               onPressed: () {
                 context.setLocale(const Locale('en'));

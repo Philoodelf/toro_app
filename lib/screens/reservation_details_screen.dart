@@ -162,6 +162,7 @@ class _ReservationDetailsScreenState extends State<ReservationDetailsScreen> {
                 selectedDate: widget.selectedDate,
                 selectedTime: TimeOfDay.fromDateTime(widget.selectedTime),
                 selectedTitle: _selectedOption,
+                selectedDropdownValue: _selectedDropdownValue,
               ),
             ],
           ),

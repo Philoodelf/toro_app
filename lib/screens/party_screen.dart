@@ -13,13 +13,13 @@ class _PartyScreenState extends State<PartyScreen> {
   bool showText = false;
   bool visible = false;
   bool appear = false;
-  bool div=false;
+  bool div = false;
   bool animationsFinished = false;
 
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(milliseconds: 10), () {
+    Future.delayed(Duration(milliseconds: 2), () {
       setState(() {
         showText = true;
       });
@@ -43,7 +43,6 @@ class _PartyScreenState extends State<PartyScreen> {
         animationsFinished = true;
       });
     });
-
   }
 
   @override
@@ -64,7 +63,7 @@ class _PartyScreenState extends State<PartyScreen> {
               ),
               onPressed: () {
                 if (animationsFinished) {
-                  Navigator.pop(context); 
+                  Navigator.pop(context);
                 }
               },
             ),
@@ -79,34 +78,64 @@ class _PartyScreenState extends State<PartyScreen> {
                   padding: const EdgeInsets.all(12),
                   child: Stack(
                     children: [
-                      Image.asset('assets/images/partyimg.jpg', fit: BoxFit.cover),
-                      AnimatedPositioned(
-                        duration: Duration(seconds: 2),
-                        curve: Curves.bounceIn,
-                        left: 10,
-                        right: 20,
-                        bottom: showText ? 160 : -70,
-                        child: Text(
-                          'partytitle'.tr(),
-                          textAlign: TextAlign.start,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold,
-                            shadows: [
-                              Shadow(
-                                offset: Offset(2, 2),
-                                blurRadius: 6,
-                                color: Colors.black54,
+                      Image.asset(
+                        'assets/images/partyimg.jpg',
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                      ),
+                      Positioned.fill(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12),
+                          child: ClipRect(
+                            child: AnimatedAlign(
+                              duration: const Duration(
+                                milliseconds: 1700,
+                              ), 
+                              curve: Curves.bounceInOut,
+                              alignment:
+                                  showText
+                                      ? const AlignmentDirectional(
+                                        0,
+                                        -0.95,
+                                      ) 
+                                      : const AlignmentDirectional(
+                                        0,
+                                        1.6,
+                                      ), 
+                              child: AnimatedOpacity(
+                                duration: const Duration(milliseconds: 300),
+                                opacity: showText ? 1 : 0, 
+                                child: ConstrainedBox(
+                                  constraints: const BoxConstraints(
+                                    maxHeight: 160, 
+                                  ),
+                                  child: Text(
+                                    'partytitle'.tr(),
+                                    softWrap: true,
+                                    textAlign: TextAlign.start,
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 25,
+                                      fontWeight: FontWeight.bold,
+                                      shadows: [
+                                        Shadow(
+                                          offset: Offset(2, 2),
+                                          blurRadius: 6,
+                                          color: Colors.black54,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
                               ),
-                            ],
+                            ),
                           ),
                         ),
                       ),
                     ],
                   ),
                 ),
-          
+
                 Column(
                   // crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -120,7 +149,7 @@ class _PartyScreenState extends State<PartyScreen> {
                       child: AnimatedOpacity(
                         duration: const Duration(seconds: 2),
                         opacity: visible ? 1.0 : 0.0,
-                        child:  Padding(
+                        child: Padding(
                           padding: EdgeInsets.all(8.0),
                           child: Text(
                             'partysubtitle'.tr(),
@@ -153,7 +182,7 @@ class _PartyScreenState extends State<PartyScreen> {
                         curve: Curves.easeOut,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children:  [
+                          children: [
                             Padding(
                               padding: EdgeInsets.all(8.0),
                               child: Text(
