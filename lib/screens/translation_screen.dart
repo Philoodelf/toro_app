@@ -30,67 +30,69 @@ class TranslationScreen extends StatelessWidget {
             ),
           ),
         ),
-        body: Column(
-          children: [
-            Image.asset(AppColors.logo),
-            OutlinedButton(
-              style: ButtonStyle(
-                backgroundColor: WidgetStatePropertyAll<Color>(
-                  AppColors.secondAppColor,
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Image.asset(AppColors.logo),
+              OutlinedButton(
+                style: ButtonStyle(
+                  backgroundColor: WidgetStatePropertyAll<Color>(
+                    AppColors.secondAppColor,
+                  ),
+                  fixedSize: WidgetStatePropertyAll<Size>(Size(244, 50)),
                 ),
-                fixedSize: WidgetStatePropertyAll<Size>(Size(244, 50)),
-              ),
-              onPressed: () {
-                context.setLocale(const Locale('nl'));
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => const ButtonNav()),
-                );
-              },
-              child: Text(
-                '🇳🇱 Nederlands',
-                style: TextStyle(fontSize: 25, color: AppColors.mainAppColor),
-              ),
-            ),
-
-            SizedBox(height: 25),
-            OutlinedButton(
-              style: ButtonStyle(
-                backgroundColor: WidgetStatePropertyAll<Color>(
-                  AppColors.secondAppColor,
+                onPressed: () {
+                  context.setLocale(const Locale('nl'));
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => const ButtonNav()),
+                  );
+                },
+                child: Text(
+                  '🇳🇱 Nederlands',
+                  style: TextStyle(fontSize: 25, color: AppColors.mainAppColor),
                 ),
-                fixedSize: WidgetStatePropertyAll<Size>(Size(244, 50)),
               ),
-              onPressed: () {
-                context.setLocale(const Locale('de'));
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => const ButtonNav()),
-                );
-              },
-              child: Text(
-                '🇩🇪 Deutsch',
-                style: TextStyle(fontSize: 25, color: AppColors.mainAppColor),
-              ),
-            ),
-            SizedBox(height: 25),
-            OutlinedButton(
-              style: ButtonStyle(
-                backgroundColor: WidgetStatePropertyAll<Color>(
-                  AppColors.secondAppColor,
+          
+              SizedBox(height: 25),
+              OutlinedButton(
+                style: ButtonStyle(
+                  backgroundColor: WidgetStatePropertyAll<Color>(
+                    AppColors.secondAppColor,
+                  ),
+                  fixedSize: WidgetStatePropertyAll<Size>(Size(244, 50)),
                 ),
-                fixedSize: WidgetStatePropertyAll<Size>(Size(244, 50)),
+                onPressed: () {
+                  context.setLocale(const Locale('de'));
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => const ButtonNav()),
+                  );
+                },
+                child: Text(
+                  '🇩🇪 Deutsch',
+                  style: TextStyle(fontSize: 25, color: AppColors.mainAppColor),
+                ),
               ),
-              onPressed: () {
-                context.setLocale(const Locale('en'));
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => const ButtonNav()),
-                );
-              },
-              child: Text(
-                '🇬🇧 English',
-                style: TextStyle(fontSize: 25, color: AppColors.mainAppColor),
+              SizedBox(height: 25),
+              OutlinedButton(
+                style: ButtonStyle(
+                  backgroundColor: WidgetStatePropertyAll<Color>(
+                    AppColors.secondAppColor,
+                  ),
+                  fixedSize: WidgetStatePropertyAll<Size>(Size(244, 50)),
+                ),
+                onPressed: () {
+                  context.setLocale(const Locale('en'));
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => const ButtonNav()),
+                  );
+                },
+                child: Text(
+                  '🇬🇧 English',
+                  style: TextStyle(fontSize: 25, color: AppColors.mainAppColor),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
